@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="position:sticky;top:0;width:100%;z-index:3;height:80px;">
         
-        <a href="{ url 'show_all' %}" class="navbar-brand"><i class="fas fa-mobile-alt text-warning fa-2x"></i></a>
+        <a href="{% url 'show_all' %}" class="navbar-brand"><i class="fas fa-mobile-alt text-warning fa-2x"></i></a>
         <a href="/" class="text-warning mx-auto rounded" style= "text-decoration:none;padding:3px;text-align: center;border:1px solid rgb(240, 173, 78);"><b>MOBILE CENTRAL</b></a>
         <button type="button" name="button" class="navbar-toggler bg-warning" data-toggle="collapse" data-target="#nav" ><span class="navbar-toggler-icon" ></span></button>	
         <div class="collapse navbar-collapse justify-content-between bg-dark py-2 px-1 rounded" id="nav" style="box-sizing: border-box;">
@@ -10,7 +10,7 @@
 				{% for category in clinks %}
 				    <a class="dropdown-item " href="{% url 'types' category.id %}">{{category.name}}</a>
 				{% endfor %}
-                    <a class="dropdown-item" href="{ url 'show_all' %}"><i class="fas fa-arrow-left"></i> All Products</a>
+                    <a class="dropdown-item" href="{% url 'show_all' %}"><i class="fas fa-arrow-left"></i> All Products</a>
 				</div>
 			</li>
             <li class="nav-item dropdown bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-3 dropdown-toggle" href="" data-toggle="dropdown">Brands</a>
@@ -18,7 +18,7 @@
                 {% for manufactorer in mlinks %}
                     <a class="dropdown-item" href="{% url 'brand' manufactorer.id %}">{{manufactorer.name}}</a>
                 {% endfor %}
-                    <a class="dropdown-item" href="{ url 'show_all' %}"><i class="fas fa-arrow-left"></i> All Products</a>
+                    <a class="dropdown-item" href="{% url 'show_all' %}"><i class="fas fa-arrow-left"></i> All Products</a>
 				</div>
 			</li>
 			<li class="nav-item bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-3" href="{ url 'contact' %}">Contact</a></li>
@@ -49,7 +49,7 @@
             {% endif %} 
 		</ul>
         
-		<form class="form-inline ml-2 " method="GET" action="{ url 'products' %}">
+		<form class="form-inline ml-2 " method="GET" action="{% url 'products' %}">
 			<div class="input-group ">
 				<input type="text" class="form-control " name="q" placeholder="Find your new phone">
 				<div class="input-group-append">

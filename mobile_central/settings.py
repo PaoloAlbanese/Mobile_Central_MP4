@@ -21,8 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8^+k&wcy2&m)a#jxt%$cl826#m75d=8!-=oqp&_rl3-8o$&234'
-
+# SECRET_KEY = '8^+k&wcy2&m)a#jxt%$cl826#m75d=8!-=oqp&_rl3-8o$&234'
+SECRET_KEY =  os.getenv ('SECRET_KEY','')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'home',
     'products',
+    'brands',
+    'categories',
     # 'stripe',
     # 'crispy_forms',
 ]
@@ -66,6 +68,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'templates', 'allauth'),
+            
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -74,8 +77,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # 'products.context_processor.category_menu_links',
-                # 'products.context_processor.manufactorer_menu_links',
+                'mobile_central.context_processor.category_menu_links',
+                'mobile_central.context_processor.manufactorer_menu_links',
                 # 'products.context_processor.counter',
             ],
         },

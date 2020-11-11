@@ -42,8 +42,8 @@ class Product(models.Model):
     latest = models.BooleanField(default=False)
     best = models.BooleanField(default=False)
 
-    def get_url(self):
-        return reverse('product_detail', args=[self.id])
+    # def get_url(self):
+    #     return reverse('product_detail', args=[self.id])
 
     def __str__(self):
         return self.name
