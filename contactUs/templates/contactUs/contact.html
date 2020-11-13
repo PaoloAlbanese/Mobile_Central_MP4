@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Contact
+{% endblock %}
+
+{% block content %}
+
+<div class="container" style="width:75%;margin-bottom:50px;">
+<br><br>
+<h1 class="text-center">Contact Us</h1>
+<br>
+{% if request.user.is_authenticated and request.user.first_name %}
+<h3 class="text-center">Dear <span class="text-capitalize">{{ request.user.first_name }}</span>,<br><br> please fill the form below,<br> replies be will sent to your registered email address</h3>
+<form method="POST">
+{% csrf_token %}
+<p>{{ form | crispy }}</p>
+
+<button type="submit" class="btn btn-primary py-2 mx-auto" style="display:block;">Submit</button>
+</form>
+
+{% else %}
+<form method="POST">
+{% csrf_token %}
+<p>{{ form | crispy }}</p>
+
+<button type="submit" class="btn btn-primary py-2 mx-auto" style="display:block;">Submit</button>
+</form>
+{% endif %}
+</div>
+
+{% endblock %}
