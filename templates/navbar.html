@@ -34,8 +34,8 @@
             </li>   
             <li class="nav-item bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-2" href="{% url 'signout' %}">Sign Out <i class="fas fa-sign-out-circle"></i> </a></li>
             {% else %}
-            <li class="nav-item bg"><a class="nav-link text-light text-uppercase font-weight-bold px-2 " href="{ url 'signup' %}">Sign Up <i class="fas fa-user-plus"></i> </a></li>
-            <li class="nav-item bg"><a class="nav-link text-light text-uppercase font-weight-bold px-2" href="{ url 'signin' %}">Sign In <i class="fas fa-sign-in-alt"></i> </a></li>
+            <li class="nav-item bg"><a class="nav-link text-light text-uppercase font-weight-bold px-2 " href="{% url 'signup' %}">Sign Up <i class="fas fa-user-plus"></i> </a></li>
+            <li class="nav-item bg"><a class="nav-link text-light text-uppercase font-weight-bold px-2" href="{% url 'signin' %}">Sign In <i class="fas fa-sign-in-alt"></i> </a></li>
             {% endif %}
 			{% if item_count > 0 %}
             <li class="nav-item">

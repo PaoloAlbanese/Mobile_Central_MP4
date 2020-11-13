@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Mobile Central
+{% endblock %}
+{% block content %}
+<div class="text-center">
+	<br>
+	<br>
+    {% if request.user.is_authenticated and request.user.first_name %}
+	<h1 class="text-center product_title">
+		Thank You for placing your order, {{ request.user.first_name }}
+	</h1>
+
+	{% else %}
+	<h1 class="text-center product_title">
+		Thank You for placing your order, {{ order.billingName}}
+	</h1>
+	{% endif %}
+	<br>
+	<br>
+	<p>Your order number is: <b>{{ customer_order.id }}</b></p>
+	<br>
+	<p>We have received your order and We will be processing it right away. An email has been sent to you. It contains
+		details of the items you purchased</p>
+</div>
+
+<table id="summary" class="table table-bordered mx-auto" style="width:70%;">
+<tr class="text-center">
+    <td><b>Product Description</b></td>
+    <td><b>Quantity</b></td>
+    <td><b>Unit Price</b></td>
+    <td><b>Sub-total</b></td>
+</tr>
+{% for item in order_items %}
+<tr class="text-center">
+    <td>{{ item.product }}</td>
+    <td>{{ item.quantity }}</td>
+    <td>€ {{ item.price }}</td>
+    <td>€ {{ item.sub_total }}</td>
+</tr>
+
+{% endfor %}
+<tr>
+    <td class="text-right" colspan="3"><b>Total Paid</b></td>
+    <td class="text-center">€ {{ order.total }}</td>
+</tr>
+</table>
+
+<script type="text/javascript">
+window.addEventListener("load", sendOrder());
+
+
+function sendOrder(){
+    
+    // var emailJSid = "{{emailJSid}}";
+    var emailJSid = "";
+
+    var emailJSsendOrd ="{{emailJSsendOrd}}";
+    
+    var dear = "{{ order.billingName }}"; 
+	var orderID = "{{ order.id }}";
+    // var emailTo = "{{ order.emailAddress }}";
+    var emailTo = "{{order.emailAddress}}";
+    var shipName = "{{ order.shippingName }}";
+    var shipAddress = "{{order.shippingAddressLine1}}"
+    var shipZip = "{{order.shippingPostcode}}";
+    var shipCountry ="{{order.shippingCountry}}";
+    var ordTotal = "{{ order.total }}";
+    var ordDate ="{{order.created | date:'d M Y'}}";
+    var listone ="{{ listone }}";
+    
+    var newList = listone.replace(/,/g, '<br>' );
+    var shippedTo = shipName +'~'+shipAddress+'~'+shipZip+'~'+shipCountry;
+    var shippedTo = shippedTo.replace(/~/g, '<br>' );
+    var ordNo  = "{{ customer_order.id }}";
+    console.log(shippedTo);
+    console.log(newList);
+    
+
+        emailjs.init(emailJSid);
+	    emailjs.send("mobasta",emailJSsendOrd,{
+	        "dear":dear,
+            "emailTo":emailTo,
+            "ordNo":ordNo,
+	        
+            "newList":newList,
+            "ordTotal":ordTotal,
+            "ordDate":ordDate,
+            
+            "shippedTo":shippedTo,
+
+
+	    });
+
+}
+</script>
+
+{% endblock %}

@@ -1,10 +1,17 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import Category, Manufactorer, Product, CaroPics
+from cart.models import Cart, CartItem, userCartItem
 from django.db.models import Q
 from home.views import get_referer_view
+from django.core.exceptions import ObjectDoesNotExist
 
 # We're in products views.
 
+def _cart_id(request):
+    cart = request.session.session_key
+    if not cart:
+        cart = request.session.create()
+    return cart
 
 def all_products(request):
 
@@ -12,17 +19,17 @@ def all_products(request):
     in_cart = []
     not_in_cart = []
 
-    # if request.user.is_authenticated:
-    #     try:
-    #         cart_items=userCartItem.objects.filter(user=request.user)
-    #     except ObjectDoesNotExist:
-    #         pass
-    # else:
-    #     try:
-    #         cart=Cart.objects.get(cart_id=_cart_id(request))
-    #         cart_items=CartItem.objects.filter(cart=cart,active=True)
-    #     except ObjectDoesNotExist:
-    #         pass
+    if request.user.is_authenticated:
+        try:
+            cart_items=userCartItem.objects.filter(user=request.user)
+        except ObjectDoesNotExist:
+            pass
+    else:
+        try:
+            cart=Cart.objects.get(cart_id=_cart_id(request))
+            cart_items=CartItem.objects.filter(cart=cart,active=True)
+        except ObjectDoesNotExist:
+            pass
 
     callheader = 'All Products'
 
@@ -155,17 +162,17 @@ def showAll(request):
     in_cart=[]
     not_in_cart = []
 
-    # if request.user.is_authenticated:
-    #     try:
-    #         cart_items=userCartItem.objects.filter(user=request.user)
-    #     except ObjectDoesNotExist:
-    #         pass
-    # else:
-    #     try:
-    #         cart=Cart.objects.get(cart_id=_cart_id(request))
-    #         cart_items=CartItem.objects.filter(cart=cart,active=True)
-    #     except ObjectDoesNotExist:
-    #         pass
+    if request.user.is_authenticated:
+        try:
+            cart_items=userCartItem.objects.filter(user=request.user)
+        except ObjectDoesNotExist:
+            pass
+    else:
+        try:
+            cart=Cart.objects.get(cart_id=_cart_id(request))
+            cart_items=CartItem.objects.filter(cart=cart,active=True)
+        except ObjectDoesNotExist:
+            pass
 
     
     callheader = 'Showing all Products'

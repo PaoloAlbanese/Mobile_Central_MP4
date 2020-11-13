@@ -1,8 +1,16 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from products.models import Category, Manufactorer, Product, CaroPics
 from home.views import get_referer_view
+from django.core.exceptions import ObjectDoesNotExist
+from cart.models import userCartItem, CartItem, Cart
 
 # We're in categories views
+
+def _cart_id(request):
+    cart = request.session.session_key
+    if not cart:
+        cart = request.session.create()
+    return cart
 
 def types(request, num):
 
@@ -10,17 +18,17 @@ def types(request, num):
     in_cart=[]
     not_in_cart = []
 
-    # if request.user.is_authenticated:
-    #     try:
-    #         cart_items=userCartItem.objects.filter(user=request.user)
-    #     except ObjectDoesNotExist:
-    #         pass
-    # else:
-    #     try:
-    #         cart=Cart.objects.get(cart_id=_cart_id(request))
-    #         cart_items=CartItem.objects.filter(cart=cart,active=True)
-    #     except ObjectDoesNotExist:
-    #         pass
+    if request.user.is_authenticated:
+        try:
+            cart_items=userCartItem.objects.filter(user=request.user)
+        except ObjectDoesNotExist:
+            pass
+    else:
+        try:
+            cart=Cart.objects.get(cart_id=_cart_id(request))
+            cart_items=CartItem.objects.filter(cart=cart,active=True)
+        except ObjectDoesNotExist:
+            pass
 
     callheader = Category.objects.get(id=num)
     products = Product.objects.filter(category=num)

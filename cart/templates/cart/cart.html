@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Cart
+{% endblock %}
+
+{% block content %}
+{% if not cart_items %}
+
+<div class="text-center">
+	<br>
+	<h1 class="text-center product_title mx-3">
+		Your Shopping Cart is empty
+	</h1>
+	<br>
+	<p class="text-center">
+		Please Click <a href="/">Here </a>to continue shopping
+	</p>
+</div>
+{% else %}
+<div class="text-center">
+	<br>
+	<div class="text-center product_title">
+		Your Shopping Cart
+	</div>
+    {% if warnUser %}
+    <p class="text-danger bg-white col-6 mx-auto p-2  border border-danger rounded"><b>Please note, since your last visit:</b> {{ warnUser|linebreaksbr }} </p>
+    {% endif %}
+    
+</div>
+
+<div class="row mx-auto" style="margin-bottom:50px;">
+
+	<div class="col-12 col-sm-12 col-md-6 col-lg-6">
+		<table class="table cart_table ">
+			<thead class="cart_thead">
+				<tr>
+					<th colspan="3" class="text-center">
+						Your Items
+					</th>
+				</tr>
+			</thead>
+			{% for cart_item in cart_items %}
+			<tr>
+				<td style="display: flex; align-items: center;justify-content: center;">
+					<a href="{{cart_item.product.get_url}}">
+						<img src="{{cart_item.product.image.url}}" height="180" alt="product image" >
+                        </a>
+				</td>
+				<td>
+					{{cart_item.product.name}}
+					<br>
+                    SKU: {{cart_item.product.id}}
+					<br>
+                    Unit Price: € {{cart_item.product.price}}
+					<br>
+                    Qty: {{cart_item.quantity}} x € {{cart_item.product.price}}
+
+					<br>
+					<br>
+                    Sub total: € {{cart_item.sub_total}}
+
+
+                    </td>
+				<td style="text-align:center;font-size:1.7em">
+
+
+
+					{% if cart_item.quantity < cart_item.product.stock %}
+					<a href="{% url 'add_cart' cart_item.product.id %}"><i class="fas fa-plus-circle "></i></a><br>
+					<br>
+                    <a href="{% url 'cart_remove' cart_item.product.id %}"><i class="fas fa-minus-circle "></i></a><br>
+					<br>
+                    <a 	href="{% url 'cart_remove_product' cart_item.product.id %}"><i class="fas fa-trash-alt "></i></a>
+					{% else %}
+					<br>
+                    <a	href="{% url 'cart_remove' cart_item.product.id %}"><i class="fas fa-minus-circle "></i></a><br>
+					<br>
+                    <a	href="{% url 'cart_remove_product' cart_item.product.id %}"><i class="fas fa-trash-alt "></i></a>
+					{% endif %}
+				</td>
+
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	<div class="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
+		<table class="table cart_table">
+			<thead class="cart_thead">
+				<tr>
+					<th colspan="3" class="text-center">
+						Check Out
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						Please review your Items before proceeding with payment.
+					</td>
+				</tr>
+				<tr style="">
+					<td class="text-left" style="vertical-align:bottom">
+						Your Total is: <strong>€ {{total}}</strong>
+					</td>
+                    <td class="" style="vertical-align:bottom">
+                    <a href="{% url 'trashAll' %}" class="text-left" ><i class="fas fa-trash-alt fa-2x " ></i> empty this cart</a>
+                    </td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="mx-auto my-5">
+
+			<form class="" action="" method="POST">
+				{% csrf_token %}
+
+                {% if request.user.is_authenticated %}
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ data_key }}"
+					data-amount="{{ stripe_total }}" data-name="Mobile Central" data-description="{{ description }}"
+					data-locale="auto" data-currency="eur" data-shipping-address="true" data-billing-address="true"
+					data-zip-code="true" data-email="{{request.user.email}}">
+                </script>
+
+                {% else %}    
+              
+				<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ data_key }}"
+					data-amount="{{ stripe_total }}" data-name="Mobile Central" data-description="{{ description }}"
+					data-locale="auto" data-currency="eur" data-shipping-address="true" data-billing-address="true"
+					data-zip-code="true" data-email="" >
+				</script>
+                {% endif %}
+
+			</form>
+
+			<a href="/" style="text-decoration:none">
+				<button type="button" class="btn btn-lg btn-block bg-dark text-white">Continue Shopping</button>
+			</a>
+		</div>
+	</div>
+</div>
+
+{% endif %}
+
+{% endblock %}

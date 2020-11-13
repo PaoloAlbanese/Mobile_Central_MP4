@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -34,16 +35,17 @@ class Product(models.Model):
     name = models.CharField(max_length=254,)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(upload_to='media/', blank=False,
-                              null=False,
-                              default='media/mobile-2468068_1920.png')
+    # image = models.ImageField(upload_to='media/', blank=False,
+    #                           null=False,
+    #                           default='mobile-2468068_1920.png')
+    image = models.ImageField (blank=False, null=False, default='mobile-2468068_1920.jpg')                          
     stock = models.IntegerField()
     available = models.BooleanField(default=True)
     latest = models.BooleanField(default=False)
     best = models.BooleanField(default=False)
 
-    # def get_url(self):
-    #     return reverse('product_detail', args=[self.id])
+    def get_url(self):
+        return reverse('product_detail', args=[self.id])
 
     def __str__(self):
         return self.name
@@ -61,3 +63,4 @@ class CaroPics(models.Model):
 
     def __str__(self):
         return self.image
+

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Create a New Account
+{% endblock %}
+
+{% block content %}
+<div>
+	{% if not form.is_valid %} 
+	<div class="mx-auto">
+		<br>
+		<h1 class="product_title text-center">
+			Create a New Account
+		</h1>
+		<br>
+		<div class="col-9 col-sm-9 col-md-6 col-lg-5 mx-auto bg-light">
+			<br>
+			<p>Enter the Following Information to Create a New Account</p>
+			<form method="post" onsubmilt="return sendSignUp(this);">
+				{% csrf_token %}
+				<p>{{ form | crispy }}</p>
+				<button type="submit" name="button" class="btn btn-primary" >Sign Up</button>
+			</form>
+            <br>
+		</div>
+	</div>
+    
+    
+	{% else %} 
+    
+	<div class="mx-auto">
+		<br>
+		<h1 class="product_title text-center">Your Account has been successfully created</h1>
+        <br>
+		<br>
+		<div class="container">
+			<h3 style = "text-transform:capitalize;" > Dear {{dear}},</h3>
+            <h4>    
+				<br>
+                Your account has been created and is ready to use.
+                <br>
+                <br>
+                You may now login with your ID: <b>{{yourID}}</b> using <a href="{% url 'signin' %}">this link</a>
+				<br>
+                <br>
+                A confirmation email has been sent to {{emailTo}}
+            </h4>
+		</div>
+
+
+	</div>
+	<script type="text/javascript">
+    window.addEventListener("load", sendSignUp());
+    
+	emailjs.init("{{emailJSid}}");
+	function sendSignUp(){
+    var emailJSid = "{{emailJSid}}";
+    var emailJSsignup ="{{emailJSsignup}}";
+	var dear = "{{dear}}"; 
+	var yourID = "{{yourID}}";
+    var emailTo = "{{emailTo}}";
+
+    
+
+        emailjs.init(emailJSid);
+	    emailjs.send("mobasta",emailJSsignup,{
+	        "from_name":dear,
+	        "from_email":emailTo,
+	        "yourID":yourID,
+	    });
+	}
+	</script>	
+    {% endif %}
+</div>
+<br>
+
+
+
+{% endblock %}

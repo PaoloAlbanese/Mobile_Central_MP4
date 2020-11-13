@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+    Product Detail
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container  mt-5"  style="">
+<h1 class="product-title mx-auto text-center" style="font-size:1.7rem" >{{producto.name}}</h1>
+<br>
+    <div class="row mt-3" style="">
+        {% if caropics %}
+        <div class="col-12 col-md-4 m-auto bg-white " style="display: flex;height:500px;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);border-radius: 20px;">
+        
+
+                        <!-- Full-width images with number and caption text -->
+                        <div class="mySlides mx-auto my-auto" style="height:90%;animation-name: gradFade;animation-duration: .61s; ">
+                            
+                            <img src="{{producto.image.url}}" class="mx-auto" style="width:100%; height:100%;object-fit:scale-down" >
+                            
+                        </div>
+                        {% for caropic in caropics %}
+                        <div class="mySlides mx-auto my-auto " style="height:90%;animation-name: gradFade;animation-duration: .61s; ">
+                            
+                            <img src="{{ caropic.image.url }}" class="mx-auto " style="width:100%;height:100%;object-fit:scale-down" >
+                            
+                        </div>
+                        {% endfor %}
+                        
+
+                        <!-- Next and previous buttons -->
+                        <a class="prev rounded" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next rounded" onclick="plusSlides(1)">&#10095;</a>
+                        
+                        <br>
+
+        </div>                
+        {% else %}
+        <div class="col-12 col-md-4 m-auto bg-white" style="display: flex;height:100%;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);border-radius: 20px;">
+            <img src="{{producto.image.url}}" class="mx-auto" alt="product image" style="width:100%;height:100%;object-fit:scale-down">
+        </div>
+        {% endif %} 
+            
+        
+        <div class="col-12 col-md-8 m-auto pt-3 px-0 px-md-5 ">
+            <div>
+                
+                <p class="product_description">Product Description</p>
+				<p class="text-justify product-text" style="font-size:1.2rem">{{producto.description}}</p>
+                {% if producto.stock == 0 %}
+                <p class="text-justify product-text text-danger"><b>Out of Stock</b></p>    
+                {% else %}
+                <h5 class="text-info font-italic-mb-3">
+					<span class="mr-1">€</span>{{producto.price}}
+				</h5>
+                <a href="{% url 'add_cart' producto.id %}" class="text-primary" style="text-decoration: none!important;font-size:1.2rem">Add to Cart</a>
+                {% endif %}
+            </div>
+        
+        </div>
+    </div>
+    
+   
+    
+    <div class="card mx-auto my-5" style="border: 2px solid rgb(240, 173, 78);border-radius: 20px;width:100%;">
+            <div class="card-header">
+                {% if user.is_authenticated %}
+                <h4>Reviews</h4>
+                {% else %}
+                    {% if reviews.count > 0 %}
+                    <h4>Reviews</h4><a href="{ url 'signin' %}" style="text-decoration: none!important">Sign In </a>or <a href="{ url 'signup' %}" style="text-decoration: none!important">Sign Up</a> to write a review!</p>
+                    {% else %}
+                    <h4>Reviews</h4>
+                    {% endif %}
+                {% endif %}
+            </div>
+    {% if user.is_authenticated %}
+        <div class="card-body">
+            <form method="post">
+            {% csrf_token %}
+                <div class="form-group">
+                {% if reviews.count == 0 %}
+                <textarea name="content" class="form-control" placeholder="Type here to write the first review of {{producto.name}}!"></textarea>
+                {% else %}
+                <textarea name="content" class="form-control" placeholder="Type here your review of {{producto.name}}."></textarea>
+                {% endif %}
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Post</button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+    {% if reviews.count > 0 %}
+    
+    <ul style="list-style-type: none; padding: 0;">
+    {% for review in reviews %}
+        <li style="border-top: 1px solid rgb(240, 173, 78); padding:10px">
+		<h5><b>{{review.user.username}}</b></h5>
+        <p>{{review.reviewDate}}</p>
+        <h6 >{{review.content}}</h6>
+        </li>
+    {% endfor %}
+	</ul>
+    {% else %}
+        <div class="mx-auto">
+        {% if user.is_authenticated %}
+        {% else %}
+        <p class="px-2">There are no reviews for {{producto.name}} just yet .<br> <a href="{% url 'signin' %}" style="text-decoration: none!important">Sign In </a>or <a href="{% url 'signup' %}" style="text-decoration: none!important">Sign Up</a> to write the first review!</p>
+        {% endif %}
+        </div>
+    {% endif %}
+ 
+</div>
+</div>
+<br><br>
+
+
+<script type="text/javascript">
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+      
+
+  }
+  
+  slides[slideIndex-1].style.display = "block";
+
+
+}
+</script>
+
+{% endblock %}

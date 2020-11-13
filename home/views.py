@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from products.models import Category, Manufactorer, Product, CaroPics
+from products.models import Product
+from cart.models import userCartItem, CartItem, Cart
+from django.core.exceptions import ObjectDoesNotExist
 import re
 
 # We're in home views.
@@ -9,6 +11,11 @@ import re
 
 #     return render(request, 'home/index.html')
 
+def _cart_id(request):
+    cart = request.session.session_key
+    if not cart:
+        cart = request.session.create()
+    return cart
 
 def latest(request):
 
@@ -23,84 +30,83 @@ def latest(request):
     in_cart = []
     not_in_cart = []
 
-    # if request.user.is_authenticated:
-    #     if userCartItem:
-    #         cart_items = userCartItem.objects.filter(user=request.user)
+    if request.user.is_authenticated:
+        if userCartItem:
+            cart_items = userCartItem.objects.filter(user=request.user)
 
-    #         for cart_item in cart_items:
-    #             prod_id = cart_item.product.id
-    #             prod = Product.objects.get(id=prod_id)
-    #             if prod.stock > 0:
-    #                 if cart_item.quantity > prod.stock:
-    #                     cart_item.quantity = prod.stock
-    #                     cart_item.save()
+            for cart_item in cart_items:
+                prod_id = cart_item.product.id
+                prod = Product.objects.get(id=prod_id)
+                if prod.stock > 0:
+                    if cart_item.quantity > prod.stock:
+                        cart_item.quantity = prod.stock
+                        cart_item.save()
 
-    #                     warnUser += "\n- the quantity for " + prod.name + \
-    #                         " has decreased in your cart due to stock reduction - "
-    #                     request.session['warnUser'] = warnUser
+                        warnUser += "\n- the quantity for " + prod.name + \
+                            " has decreased in your cart due to stock reduction - "
+                        request.session['warnUser'] = warnUser
 
                         
-    #             if prod.stock == 0:
-    #                 cart_item.delete()
+                if prod.stock == 0:
+                    cart_item.delete()
 
-    #                 warnUser += "\n- " + prod.name + \
-    #                     "- has run out of stock while it was still placed in the cart - "
-    #                 request.session['warnUser'] = warnUser
+                    warnUser += "\n- " + prod.name + \
+                        "- has run out of stock while it was still placed in the cart - "
+                    request.session['warnUser'] = warnUser
                     
 
-    #     try:
+        try:
 
-    #         if 'priortolog' in request.session:
-    #             priortolog = request.session['priortolog']
-    #             olditems = CartItem.objects.filter(cart=priortolog)
+            if 'priortolog' in request.session:
+                priortolog = request.session['priortolog']
+                olditems = CartItem.objects.filter(cart=priortolog)
 
                 
-    #             for i in cart_items:
                     
 
-    #             for cart_item in cart_items:
-    #                 prod_id = cart_item.product.id
-    #                 prod = Product.objects.get(id=prod_id)
-    #                 cumulative_prod_qty = cart_item.quantity
-    #                 for olditem in olditems:
-    #                     if olditem.product.id == cart_item.product.id:
-    #                         cumulative_prod_qty = cart_item.quantity + olditem.quantity
-    #                         if prod.stock > 0:
-    #                             if cumulative_prod_qty <= prod.stock:
-    #                                 cart_item.quantity += olditem.quantity
-    #                                 cart_item.save()
-    #                             else:
-    #                                 cart_item.quantity = prod.stock
-    #                                 warnUser += "\n- the quantity for " + prod.name + \
-    #                                     " has been adjusted in your cart due to changed stock availability - "
-    #                                 request.session['warnUser'] = warnUser
-    #                         if prod.stock == 0:
-    #                             cart_item.delete()
-    #                             warnUser += "\n- " + prod.name + \
-    #                                 "- has run out of stock while it was being placed in the cart - "
-    #                             request.session['warnUser'] = warnUser
+                for cart_item in cart_items:
+                    prod_id = cart_item.product.id
+                    prod = Product.objects.get(id=prod_id)
+                    cumulative_prod_qty = cart_item.quantity
+                    for olditem in olditems:
+                        if olditem.product.id == cart_item.product.id:
+                            cumulative_prod_qty = cart_item.quantity + olditem.quantity
+                            if prod.stock > 0:
+                                if cumulative_prod_qty <= prod.stock:
+                                    cart_item.quantity += olditem.quantity
+                                    cart_item.save()
+                                else:
+                                    cart_item.quantity = prod.stock
+                                    warnUser += "\n- the quantity for " + prod.name + \
+                                        " has been adjusted in your cart due to changed stock availability - "
+                                    request.session['warnUser'] = warnUser
+                            if prod.stock == 0:
+                                cart_item.delete()
+                                warnUser += "\n- " + prod.name + \
+                                    "- has run out of stock while it was being placed in the cart - "
+                                request.session['warnUser'] = warnUser
                                 
-    #                 ids_in_user_cart.append(cart_item.product.id)
+                    ids_in_user_cart.append(cart_item.product.id)
 
-    #             for olditem in olditems:
-    #                 if olditem.product.id not in ids_in_user_cart:
-    #                     userCartItem.objects.create(
-    #                         product=olditem.product, quantity=olditem.quantity, user=request.user)
+                for olditem in olditems:
+                    if olditem.product.id not in ids_in_user_cart:
+                        userCartItem.objects.create(
+                            product=olditem.product, quantity=olditem.quantity, user=request.user)
 
                 
 
-    #             del request.session['priortolog']
+                del request.session['priortolog']
 
-    #     except ObjectDoesNotExist:
-    #         print('non ha userCartese')
+        except ObjectDoesNotExist:
+            print('non ha userCartese')
 
-    # else:
-    #     try:
-    #         cart = Cart.objects.get(cart_id=_cart_id(request))
-    #         cart_items = CartItem.objects.filter(cart=cart, active=True)
+    else:
+        try:
+            cart = Cart.objects.get(cart_id=_cart_id(request))
+            cart_items = CartItem.objects.filter(cart=cart, active=True)
 
-    #     except ObjectDoesNotExist:
-    #         pass
+        except ObjectDoesNotExist:
+            pass
 
     callheader = 'Check Out the Latest Arrivals!'
     products = Product.objects.filter(latest=True)

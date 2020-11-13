@@ -46,8 +46,11 @@ INSTALLED_APPS = [
     'products',
     'brands',
     'categories',
-    # 'stripe',
-    # 'crispy_forms',
+    'producto',
+    'cart',
+    'registeredAccounts',
+    'stripe',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +82,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'mobile_central.context_processor.category_menu_links',
                 'mobile_central.context_processor.manufactorer_menu_links',
-                # 'products.context_processor.counter',
+                'mobile_central.context_processor.counter',
             ],
         },
     },
@@ -167,8 +170,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STRIPE_PUBLISHABLE_KEY = os.getenv ('STRIPE_PUBLISHABLE_KEY','')
 STRIPE_SECRET_KEY = os.getenv ('STRIPE_SECRET_KEY','')
 
-# CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# EMAILJS_USER_ID = os.getenv ('EMAILJS_USER_ID','')
-# EMAILJS_SIGNUP = os.getenv ('EMAILJS_SIGNUP','')
-# EMAILJS_SENDORD = os.getenv ('EMAILJS_SENDORD','')
+EMAILJS_USER_ID = os.getenv ('EMAILJS_USER_ID','')
+EMAILJS_SIGNUP = os.getenv ('EMAILJS_SIGNUP','')
+EMAILJS_SENDORD = os.getenv ('EMAILJS_SENDORD','')
