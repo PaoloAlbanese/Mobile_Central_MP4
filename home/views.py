@@ -19,6 +19,14 @@ def _cart_id(request):
 
 def latest(request):
 
+    addedToCart=""
+
+    if 'addedToCart' in request.session:
+
+        cartA = request.session.get('addedToCart')
+        if cartA == True:
+            addedToCart = request.session['addedToCart']
+
     warnUser = request.session.get('warnUser')
     if not warnUser:
         warnUser = ""
@@ -186,6 +194,7 @@ def latest(request):
     referer_view = get_referer_view(request)
 
     context = {
+        'addedToCart':addedToCart,
         'products': products,
         'callheader': callheader,
         'new_arrivals_page': new_arrivals_page,

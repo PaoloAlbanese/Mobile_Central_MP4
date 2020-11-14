@@ -1,0 +1,485 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Add a New Product 
+{% endblock %}
+
+{% block content %}
+<script type="text/javascript">
+    var this_url = "{{this_url}}"
+    var referer_view ="{{referer_view}}"
+
+    if (this_url == referer_view){
+        console.log('uguale ma non scrolla ma come')
+    window.addEventListener("load", scrollBack);
+    }
+
+    function scrollBack() {  
+    // if (scrollY) {
+    var Ywas = parseInt(localStorage.getItem("Ywas"));
+    console.log('print Ywas', Ywas)
+    // if (!isNaN(scroll)) {
+        window.scroll(0, Ywas);
+    // }
+    // }
+    }
+
+</script>
+<div class="row p-2" style="width:100%; ">
+    <div class="mx-auto p-2 col-12 col-sm-12 col-md-6 col-lg-5 p-2" >
+        <div style="border: 2px solid rgb(240, 173, 78);background-color: #DCDCDC" >
+        {% if not pForm.is_valid %} 
+        <!-- <div class="mx-auto" > -->
+            <br>
+            <h1 class="product_title text-center">
+                Add a New Product
+            </h1>
+            <br>
+            <div class=" mx-auto bg-light">
+                <br>
+                <p class="text-center">Enter the Following Information and Upload a Picture File to Add a New Product</p>
+                <form method="post" enctype="multipart/form-data" name="Prod" class="p-1">
+                    {% csrf_token %}
+                    <p class="p-1">{{ pForm | crispy }}</p>
+                    <input type="hidden" id="" name="subForm" value="prod">
+                    <button type="submit" name="button" class="btn btn-primary"  >Add Product</button>
+                </form>
+                <br>
+            </div>
+        
+    
+    
+	{% else %} 
+    
+	<!-- <div class="mx-auto "> -->
+		<br>
+		<h1 class="product_title text-center">Upload Successful </h1>
+        <br>
+		<br>
+		<div class="container">
+			<h3 style = "text-transform:capitalize;" > Dear {{Dear}},</h3>
+            <h4>    
+				<br>
+                The Product <i class="text-primary">{{pName}}</i> has been Added to the Database.
+                <!-- <br>
+                <br>
+                <div class="mx-auto bg-white mx-auto" style="display: flex;height:350px;width:200px;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);border-radius: 20px;">
+                <img class="m-auto p-1" src="{{ AddProd.image.url}}" alt="any uploaded picture was supposed to show here" style="height:90%;width:90%;object-fit:scale-down;" >
+                
+                </div>
+                <a href="{% url 'add_product' %}">Add Another Product</a>
+                <br> -->
+                
+            </h4>
+
+            <br>
+                <div class="row" >
+                <p class="col-6"><strong>category: </strong>{{AddProd.category}}<br><strong>price: </strong>€ {{AddProd.price}}<br><strong>stock: </strong>{{AddProd.stock}}<br><strong>available: </strong>{{AddProd.available}}<br><strong>latest: </strong>{{AddProd.latest}}<br><strong>best: </strong>{{AddProd.best}}<br><strong>description: </strong>{{AddProd.description}} </p>
+                <div class="mx-auto bg-white mx-auto col-6" style="display: flex;height:650px;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);">
+                <img class="m-auto" src="{{ AddProd.image.url}}" alt="any uploaded picture was supposed to show here" style="height:98%;width:90%;object-fit:scale-down;">
+                </div>
+                </div>
+                <a href="{% url 'add_product' %}">Add Another Product</a>
+                <br>
+
+
+
+		</div>
+
+
+	
+	
+    {% endif %}
+    </div>
+    </div>
+
+
+    <div class=" mx-auto col-12 col-sm-12 col-md-6 col-lg-5 p-2 mb-5" >
+    <div style="border: 2px solid rgb(240, 173, 78);background-color:#DCDCDC"> 
+    {% if not bForm.is_valid %} 
+        
+		<br>
+		<h1 class="product_title text-center">
+			Add a New Manufactorer to the DB
+		</h1>
+		<br>
+		<div class=" mx-auto bg-light" >
+			<br>
+			<p class="text-center">Please Enter the Name of the New Manufactorer</p>
+			<form method="post" name="Manuf" class="p-1">
+				{% csrf_token %}
+				<p class="p-1">{{ bForm | crispy }}</p>
+                <input type="hidden" id="" name="subForm" value="brand">
+				<button type="submit" name="button" class="btn btn-primary" >Save Manufactorer</button>
+			</form>
+            <br>
+		</div>
+	
+    
+    
+	{% else %} 
+    
+	<!-- <div class="mx-auto col-9 col-sm-9 col-md-6 col-lg-5"> -->
+		<br>
+		<h1 class="product_title text-center">Manufactorer saved Successfuly </h1>
+        <br>
+		<br>
+		<div class="container">
+			<h3 style = "text-transform:capitalize;" > Dear {{Dear}},</h3>
+            <h4>    
+				<br>
+                The Manufactorer {{bName}} has been Added to the Database.
+                <br>
+                
+            </h4>
+            <a href="{% url 'add_product' %}">Add Another Manufactorer</a>
+		</div>
+
+
+	
+	
+    {% endif %}
+    </div>
+    <br>
+    <div style="border: 2px solid rgb(240, 173, 78);background-color: #DCDCDC">
+    {% if not cForm.is_valid %} 
+	
+		<br>
+		<h1 class="product_title text-center">
+			Add a New Side Picture to a Product
+		</h1>
+		<br>
+		<div class=" mx-auto bg-light" >
+			<br>
+			<p class="text-center">Please Select a Product and Upload a Side Picture for it</p>
+			<form method="post" name="SidePic" enctype="multipart/form-data" class="p-1">
+				{% csrf_token %}
+				<p class="p-1">{{ cForm | crispy }}</p>
+                <input type="hidden" id="" name="subForm" value="sidepic">
+				<button type="submit" name="button" class="btn btn-primary" >Upload Side Picture</button>
+			</form>
+            <br>
+		</div>
+	
+    
+    
+	{% else %} 
+    
+	<!-- <div class="mx-auto col-9 col-sm-9 col-md-6 col-lg-5"> -->
+		<br>
+		<h1 class="product_title text-center">Side Picture uploaded Successfuly </h1>
+        <br>
+		<br>
+		<div class="container">
+			<h3 style = "text-transform:capitalize;" > Dear {{Dear}},</h3>
+            <h4>    
+				<br>
+                This Side Picture has been Added to {{cProduct}}.
+                <br>
+                <br>
+                <div class="mx-auto bg-white mx-auto" style="display: flex;height:400px;width:50%;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);">
+                <img class="m-auto" src="{{ AddSidePic.image.url}}" alt="any uploaded picture was supposed to show here" style="height:98%;width:90%;object-fit:scale-down">
+                </div>
+            </h4>
+            
+
+            <a href="{% url 'add_product' %}">Add Another Side Picture</a>
+		</div>
+
+
+    
+
+	
+	
+    {% endif %}
+    </div>
+    <br>
+    <div style="border: 2px solid rgb(240, 173, 78);background-color:#DCDCDC">
+    {% if not eForm.is_valid %}
+        {% if pChanged %}
+        <div style="height:800px;">    
+				<br>
+                <h4>The Product: <i class="text-primary">{{eName}}</i> has been Edited.</h4>
+                <br>
+                <br>
+                <div class="row" >
+                <p class="col-6"><strong>category: </strong>{{p_to_change.category}}<br><strong>price: </strong>€ {{p_to_change.price}}<br><strong>stock: </strong>{{p_to_change.stock}}<br><strong>available: </strong>{{p_to_change.available}}<br><strong>latest: </strong>{{p_to_change.latest}}<br><strong>best: </strong>{{p_to_change.best}}<br><strong>description: </strong>{{p_to_change.description}} </p>
+                <div class="mx-auto bg-white mx-auto col-6" style="display: flex;height:650px;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);">
+                <img class="m-auto" src="{{ p_to_change.image.url}}" alt="any uploaded picture was supposed to show here" style="height:98%;width:90%;object-fit:scale-down;">
+                </div>
+                </div>
+                <a href="{% url 'add_product' %}">Edit/Delete Another Product</a>
+                <br>
+                
+            </div>
+
+        {% elif pDeleted %}
+        <h4>    
+				<br>
+                The Product {{pDeleted}} has been deleted.
+                <br>
+                <br>
+                <!-- <div class="mx-auto bg-white mx-auto" style="display: flex;height:350px;width:200px;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);border-radius: 20px;"> -->
+                <!-- <img class="m-auto" src="{{ EditProd.image.url}}" alt="any uploaded picture was supposed to show here" style="height:98%;max-height:300px"> -->
+                <a href="{% url 'add_product' %}">Edit/Delete Another Product</a>
+                <!-- </div> -->
+                <br>
+                
+            </h4>
+        {% else %}
+        <!-- <div class="mx-auto" > -->
+            <br>
+            <h1 class="product_title text-center">
+                Edit a Product
+            </h1>
+            <br>
+            <div class=" mx-auto bg-light">
+                <br>
+                <p class="text-center">Select and Edit a Product</p>
+                <form  method="post" class="p-1">
+                {% csrf_token %}
+                    <p class="p-1">{{ lookupProd | crispy }}</p>
+                    <input type="hidden" id="" name="subForm" value="findProd">
+                <!-- <button type="submit" name="button" class="btn btn-primary"  >find Product</button>     -->
+                </form>
+                {% if eForm == EditProd %}
+                <form method="post" enctype="multipart/form-data" name="Prod" class="p-1">
+                    {% csrf_token %}
+                    
+                    <p class="p-1">{{ eForm | crispy }}</p>
+                    <input type="hidden" id="" name="subForm" value="editProd">
+                    {% if selprodId %}
+                    <button type="submit" name="with_prod_id" class="btn btn-primary" value="{{selprodId}}" >Edit Product</button>
+                    {% else %}
+                    <button type="submit" name="button" class="btn btn-primary"  >Edit Product</button>
+                    {% endif %}
+                    <button type="submit" name="p_to_del" class="btn btn-danger" value="">Delete {{eForm.name.value}}</button>
+                </form>
+                
+                <!-- <form method="post">
+                {% csrf_token %}
+                <input type="hidden" id="" name="subForm" value="delProd">
+                <input type="hidden" id=""  value="{{ eForm.name }}">
+                <button type="submit" class="btn btn-danger" value="" >Delete {{eForm.name.value}}</button>
+                
+                </form> -->
+                {% endif %}
+                <br>
+                <br>
+            </div>
+        {% endif %}
+    
+    
+	{% else %} 
+    
+	<!-- <div class="mx-auto "> -->
+		<br>
+		<h1 class="product_title text-center">Operation Successful </h1>
+        <br>
+		<br>
+		<div class="container">
+			<h3 style = "text-transform:capitalize;" > Dear {{Dear}},</h3>
+            {% if not pDeleted %}
+            
+            
+            <h4>    
+				<br>
+                The Product <span class="text-primary"><i>{{eName}}</i></span> has been Edited.
+                <br>
+                <br>
+                {% if theresPic %}
+                <div class="mx-auto bg-white mx-auto" style="display: flex;height:350px;width:200px;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);border-radius: 20px;">
+                <img class="m-auto" src="{{ EditProd.image.url}}" alt="any uploaded picture was supposed to show here" style="height:98%;max-height:300px">
+                </div>
+                {% else %}
+                <div class="row" >
+                <p class="col-6"><strong>category: </strong>{{pChanged.category}}<br><strong>price: </strong>€ {{pChanged.price}}<br><strong>stock: </strong>{{pChanged.stock}}<br><strong>available: </strong>{{pChanged.available}}<br><strong>latest: </strong>{{pChanged.latest}}<br><strong>best: </strong>{{pChanged.best}}<br><strong>description: </strong>{{pChanged.description}} </p>
+                <div class="mx-auto bg-white mx-auto col-6" style="display: flex;height:650px;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);">
+                <img class="m-auto" src="{{ pChanged.image.url}}" alt="any uploaded picture was supposed to show here" style="height:98%;width:90%;object-fit:scale-down;">
+                </div>
+                </div>
+
+
+            
+                {% endif %}
+                <a href="{% url 'add_product' %}">Edit/Delete Another Product</a>
+                <br>
+                
+            </h4>
+
+            {% else %}
+
+            <h4>    
+				<br>
+                The Product <span class="text-primary"><i>{{pDeleted}}</i></span> has been <span class="text-danger">deleted.</span>
+                <br>
+                <br>
+                <!-- <div class="mx-auto bg-white mx-auto" style="display: flex;height:350px;width:200px;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);border-radius: 20px;"> -->
+                <!-- <img class="m-auto" src="{{ EditProd.image.url}}" alt="any uploaded picture was supposed to show here" style="height:98%;max-height:300px"> -->
+                <a href="{% url 'add_product' %}">Edit/Delete Another Product</a>
+                <!-- </div> -->
+                <br>
+                
+            </h4>
+
+            {% endif %}
+
+
+		</div>
+
+        <br>
+	
+	
+    {% endif %}
+    </div>
+    <br>
+
+    <div style="border: 2px solid rgb(240, 173, 78);background-color: #DCDCDC">
+    {% if not sidePicDeletion %} 
+	
+		<br>
+		<h1 class="product_title text-center">
+			Delete a Side Picture of a Product
+		</h1>
+		<br>
+		<div class=" mx-auto bg-light" style="" >
+			<br>
+            {% if not selSideProd %}
+			<p class="text-center">Please Select a Product to Delete a Side Picture of It</p>
+            {% endif %}
+
+            <form  method="post" class="p-1">
+                {% csrf_token %}
+                    <p class="p-1">{{ lookupProd | crispy }}</p>
+                    <input type="hidden" id="" name="subForm" value="findSideProd">
+                    
+            </form>
+            
+            
+            
+            {% if caropics %}
+                    <div class="m-auto bg-white col-12 " style="height:300px;width:60%; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);border-radius: 20px;">
+                        {% for caropic in caropics %}
+                        
+                        <div class="mySlides mx-auto my-auto " style="height:100%;display: flex;align-items: center;animation-name: gradFade;animation-duration: .61s; ">
+                            <div stile="height:10%;width:100%;" class="mx-auto my-2 ">
+                            <p class="mx-auto" style="width:50%;display:inline-flex;"><span class="mx-auto" style="text-align:center;"><strong>{{ forloop.counter}} of {{caropics|length}}</strong></span></p>
+                            
+                            <form method="POST" style="width:40%;display:inline-flex;"  class="p-1" >
+                            {% csrf_token %}
+                            
+                            <button type="submit" name="pic_to_del" value="{{caropic.id}}">
+                            <i class="text-danger mx-auto fas fa-trash-alt fa-2x"></i>
+                            </button>
+                            <!-- </a> -->
+                            </form>
+                            </div>
+                            <div style="height:90%;width:100%;">
+                            <img src="{{ caropic.image.url }}" class="mx-auto my-auto " style="height:70%;width:100%;object-fit:scale-down" >
+                            </div>
+                            
+                        </div>
+                         
+                        {% endfor %}
+                        
+                        {% if caropics|length > 1 %}
+                        <!-- Next and previous buttons -->
+                        <a class="prev rounded" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next rounded" onclick="plusSlides(1)">&#10095;</a>
+                        {% endif %}
+                        
+                    </div>    
+            {% else %}
+            {% if selSideProd %}
+            <p style="color:red">{{selSideProd}} has No Side Pictures</p>
+            {% endif %}
+
+            {% endif %}
+             <br>
+
+    
+    
+	{% else %} 
+    
+	
+		<br>
+		<h1 class="product_title text-center">Side Picture Deleted</h1>
+        <br>
+		<br>
+		<div class="container">
+			<h3 style = "text-transform:capitalize;" > Dear {{Dear}},</h3>
+            <h4>    
+				<br>
+                The Side Picture has been taken off <span class="text-primary"><i>{{TheSidePic.product}}</i></span>.
+                <br>
+                
+            </h4>
+            
+            <a href="{% url 'add_product' %}">Delete Another Side Picture</a>
+		</div>
+    <br><br><br><br>
+
+	
+	
+    {% endif %}
+	</div>
+
+
+
+
+
+    </div>
+
+
+
+
+<script type="text/javascript">
+var this_url = "{{this_url}}"
+var referer_view ="{{referer_view}}"
+window.addEventListener("scroll", SetY)
+
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+      
+
+  }
+  
+  slides[slideIndex-1].style.display = "block";
+
+
+}
+
+
+function SetY(Ywas) {
+    var Ywas =  window.scrollY;
+    localStorage.setItem("Ywas", Ywas);
+    
+}
+
+
+</script>
+
+
+
+
+{% endblock %}

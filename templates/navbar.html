@@ -45,7 +45,15 @@
             {% endif %}    
 			</li>
             {% if request.user.is_authenticated and request.user.is_staff %}
-            <li class="nav-item bg-dark"><a class="nav-link text-danger text-uppercase font-weight-bold px-3" href="{ url 'add_product' %}">Product Managment</a></li>
+            <li class="nav-item dropdown bg-dark"><a class="nav-link text-danger text-uppercase font-weight-bold px-3 dropdown-toggle" data-toggle="dropdown">Product Managment</a>
+            <div class="dropdown-menu">
+            <a href="{% url 'add_product' %}" class="dropdown-item">Add a Product</a>
+            <a href="{% url 'add_brand' %}" class="dropdown-item">add a Manufactorer</a>
+            <a href="{% url 'edit_product' %}" class="dropdown-item">Edit or Delete a Product</a>
+            <a href="{% url 'add_side_pic' %}" class="dropdown-item">Add a Side Picture to a Product</a>
+            <a href="{% url 'del_side_pic' %}" class="dropdown-item">Delete a Side Picture of a Product</a>
+            </div>
+            </li>
             {% endif %} 
 		</ul>
         

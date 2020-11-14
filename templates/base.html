@@ -1,7 +1,10 @@
 {% load static %}
 <!DOCTYPE html>
-
-<html lang="en">
+{% if addedToCart %}
+<html lang="en" id="theHtml" class="addedToCart">
+{% else %}
+<html lang="en" id="theHtml" class="pageOverlay">
+{% endif %}
 
 <head>
 
@@ -52,6 +55,7 @@
 
 <body id="contenuto">
 
+
     {% include 'navbar.html' %} 
 
 	{% block content %}
@@ -61,18 +65,35 @@
     {% include 'footer.html' %}
 </body>
 
-<script src="{% static 'JS/topCarousel.js' %}" type="text/javascript"></script>
+
 <script src="{% static 'JS/fadeProds.js' %}" type="text/javascript"></script>
 <script src="{% static 'JS/fadeTop.js' %}" type="text/javascript"></script>
 <script src="{% static 'JS/setScroll.js' %}" type="text/javascript"></script>
 
 
 
+
 </html>
 
 <script type="text/javascript">
+var theHtml = document.getElementById("theHtml");
+var classList = theHtml.classList;
+
+setTimeout(alertFunc, 300);
+
+function alertFunc() {
 $(document).ready(function() {
+
+  
   document.getElementsByTagName("html")[0].style.visibility = "visible";
+//   theHtml.classList.remove("pageOverlay");
+
+    while (classList.length > 0) {
+   classList.remove(classList.item(0));
+} 
+
 });
+}
+
 </script>
 

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Add a New Side Picture 
+{% endblock %}
+
+{% block content %}
+<div class="row p-2" style="width:100%; ">
+<br>
+    <div class=" mx-auto col-12 col-sm-12 col-md-6 col-lg-5 p-2 mb-5" >
+    <div style="border: 2px solid rgb(240, 173, 78);background-color: #DCDCDC">
+    {% if not cForm.is_valid %} 
+	
+		<br>
+		<h1 class="product_title text-center">
+			Add a New Side Picture to a Product
+		</h1>
+		<br>
+		<div class=" mx-auto bg-light" >
+			<br>
+			<p class="text-center">Please Select a Product and Upload a Side Picture for it</p>
+			<form method="post" name="SidePic" enctype="multipart/form-data" class="p-1">
+				{% csrf_token %}
+				<p class="p-1">{{ cForm | crispy }}</p>
+                <input type="hidden" id="" name="subForm" value="sidepic">
+				<button type="submit" name="button" class="btn btn-primary" >Upload Side Picture</button>
+			</form>
+            <br>
+		</div>
+	
+    
+    
+	{% else %} 
+    
+	<!-- <div class="mx-auto col-9 col-sm-9 col-md-6 col-lg-5"> -->
+		<br>
+		<h1 class="product_title text-center">Side Picture uploaded Successfuly </h1>
+        <br>
+		<br>
+		<div class="container">
+			<h3 style = "text-transform:capitalize;" > Dear {{Dear}},</h3>
+            <h4>    
+				<br>
+                This Side Picture has been Added to {{cProduct}}.
+                <br>
+                <br>
+                <div class="mx-auto bg-white mx-auto" style="display: flex;height:400px;width:50%;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);">
+                <img class="m-auto" src="{{ AddSidePic.image.url}}" alt="any uploaded picture was supposed to show here" style="height:98%;width:90%;object-fit:scale-down">
+                </div>
+            </h4>
+            
+
+            <a href="{% url 'add_side_pic' %}">Add Another Side Picture</a>
+		</div>
+
+
+    
+
+	
+	
+    {% endif %}
+    </div>
+
+
+
+
+
+
+{% endblock %}

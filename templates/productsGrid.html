@@ -1,5 +1,6 @@
+
 <div><br></div>
-{% if products %}
+{% if products and new_arrivals_page or products and show_all_page %}
 <div class="row d-none d-md-block slidesContainer " style="">
         
         <div class="col-7 m-auto mt-3 bg-white " style="display: flex;height:500px;object-fit:scale-down; background-image: radial-gradient(
@@ -244,3 +245,8 @@
 			{% endfor %}
 		</div>
 	</div>
+
+
+    <script type="text/javascript">
+        {% include  'topCarousel.js' %}
+    </script>

@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'stripe',
     'crispy_forms',
     'contactUs',
+    'prodMgt',
 ]
 
 MIDDLEWARE = [

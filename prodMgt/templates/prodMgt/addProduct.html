@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Add a New Product 
+{% endblock %}
+
+{% block content %}
+
+<div class="row p-2" style="width:100%; ">
+    <div class="mx-auto p-2 col-12 col-sm-12 col-md-6 col-lg-5 p-2" >
+        <div style="border: 2px solid rgb(240, 173, 78);background-color: #DCDCDC" >
+        {% if not pForm.is_valid %} 
+        
+            <br>
+            <h1 class="product_title text-center">
+                Add a New Product
+            </h1>
+            <br>
+            <div class=" mx-auto bg-light">
+                <br>
+                <p class="text-center">Enter the Following Information and Upload a Picture File to Add a New Product</p>
+                <form method="post" enctype="multipart/form-data" name="Prod" class="p-1">
+                    {% csrf_token %}
+                    <p class="p-1">{{ pForm | crispy }}</p>
+                    <input type="hidden" id="" name="subForm" value="prod">
+                    <button type="submit" name="button" class="btn btn-primary"  >Add Product</button>
+                </form>
+                <br>
+            </div>
+        
+    
+    
+	{% else %} 
+    
+	
+		<br>
+		<h1 class="product_title text-center">Upload Successful </h1>
+        <br>
+		<br>
+		<div class="container">
+			<h3 style = "text-transform:capitalize;" > Dear {{Dear}},</h3>
+            <h4>    
+				<br>
+                The Product <i class="text-primary">{{pName}}</i> has been Added to the Database.
+                           
+            </h4>
+             
+            <br>
+                <div class="row" >
+                <p class="col-6"><strong>category: </strong>{{AddProd.category}}<br><strong>price: </strong>€ {{AddProd.price}}<br><strong>stock: </strong>{{AddProd.stock}}<br><strong>available: </strong>{{AddProd.available}}<br><strong>latest: </strong>{{AddProd.latest}}<br><strong>best: </strong>{{AddProd.best}}<br><strong>description: </strong>{{AddProd.description}} </p>
+                <div class="mx-auto bg-white mx-auto col-6" style="display: flex;height:450px;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);">
+                <img class="m-auto" src="{{ AddProd.image.url}}" alt="any uploaded picture was supposed to show here" style="height:98%;width:90%;object-fit:scale-down;">
+                </div>
+                </div>
+                
+                <br>
+                <a href="{% url 'add_product' %}" style="text-align:right">Add Another Product</a> 
+
+
+		</div>
+
+    
+	
+	
+    {% endif %}
+    </div>
+    <br><br><br><br>
+    </div>
+
+    
+
+
+{% endblock %}

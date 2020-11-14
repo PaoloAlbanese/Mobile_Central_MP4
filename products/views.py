@@ -5,6 +5,8 @@ from django.db.models import Q
 from home.views import get_referer_view
 from django.core.exceptions import ObjectDoesNotExist
 
+
+
 # We're in products views.
 
 def _cart_id(request):
@@ -14,6 +16,14 @@ def _cart_id(request):
     return cart
 
 def all_products(request):
+
+    addedToCart=""
+
+    if 'addedToCart' in request.session:
+
+        cartA = request.session.get('addedToCart')
+        if cartA == True:
+            addedToCart = request.session['addedToCart']
 
     cart_items = ()
     in_cart = []
@@ -135,6 +145,7 @@ def all_products(request):
     referer_view = get_referer_view(request)
 
     context = {
+        'addedToCart':addedToCart,
         'callheader': callheader,
         'products': products,
         'search_term': query,
@@ -157,6 +168,14 @@ def all_products(request):
 
 
 def showAll(request):
+
+    addedToCart=""
+
+    if 'addedToCart' in request.session:
+
+        cartA = request.session.get('addedToCart')
+        if cartA == True:
+            addedToCart = request.session['addedToCart']
 
     cart_items = ()
     in_cart=[]
@@ -259,11 +278,12 @@ def showAll(request):
                 AnnSort = "(Cheapest First)"  
 
 
-    
+    show_all_page=True
     this_url = request.path
     referer_view = get_referer_view(request)
 
     context = {
+        'addedToCart':addedToCart,
         'products': products,
         'callheader': callheader,
         'pageTitle': pageTitle,

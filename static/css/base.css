@@ -1,6 +1,37 @@
 
 html { visibility:hidden; }
 
+.pageOverlay {
+    top: 0;
+    left: 0;
+    position: sticky;
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
+    display: block;
+    background-image: url("mobile-ring.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color:  #f3f3f3;
+}
+/* {% static 'JS/BTT.js' %} */
+
+
+.addedToCart {
+    top: 0;
+    left: 0;
+    position: sticky;
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
+    display: block;
+    background-image: url("cart-148964_1280.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20%;
+    background-color:  #f3f3f3;
+}
+
 body{
     position:relative;
     

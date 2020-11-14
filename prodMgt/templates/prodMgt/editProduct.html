@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Edit/Delete a Product 
+{% endblock %}
+
+{% block content %}
+
+<div class="row p-2" style="width:100%; top:80px; ">
+    <div class="mx-auto p-2 col-12 col-sm-12 col-md-6 col-lg-5 p-2" >
+<div style="border: 2px solid rgb(240, 173, 78);background-color:#DCDCDC">
+    {% if not eForm.is_valid %}
+        {% if pChanged %}
+        <div style="height:800px;">    
+				<br>
+                <h4>The Product: <i class="text-primary">{{eName}}</i> has been Edited.</h4>
+                <br>
+                <br>
+                <div class="row" >
+                <p class="col-6"><strong>category: </strong>{{p_to_change.category}}<br><strong>price: </strong>€ {{p_to_change.price}}<br><strong>stock: </strong>{{p_to_change.stock}}<br><strong>available: </strong>{{p_to_change.available}}<br><strong>latest: </strong>{{p_to_change.latest}}<br><strong>best: </strong>{{p_to_change.best}}<br><strong>description: </strong>{{p_to_change.description}} </p>
+                <div class="mx-auto bg-white mx-auto col-6" style="display: flex;height:650px;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);">
+                <img class="m-auto" src="{{ p_to_change.image.url}}" alt="any uploaded picture was supposed to show here" style="height:98%;width:90%;object-fit:scale-down;">
+                </div>
+                </div>
+                <a href="{% url 'add_product' %}">Edit/Delete Another Product</a>
+                <br>
+                
+            </div>
+
+        {% elif pDeleted %}
+        <h4>    
+				<br>
+                The Product {{pDeleted}} has been deleted.
+                <br>
+                <br>
+                
+                <a href="{% url 'add_product' %}">Edit/Delete Another Product</a>
+                
+                <br>
+                
+            </h4>
+        {% else %}
+        
+            <br>
+            <h1 class="product_title text-center">
+                Edit a Product
+            </h1>
+            <br>
+            <div class=" mx-auto bg-light">
+                <br>
+                <p class="text-center">Select and Edit a Product</p>
+                <form  method="post" class="p-1">
+                {% csrf_token %}
+                    <p class="p-1">{{ lookupProd | crispy }}</p>
+                    <input type="hidden" id="" name="subForm" value="findProd">
+                
+                </form>
+                {% if eForm == EditProd %}
+                <form method="post" enctype="multipart/form-data" name="Prod" class="p-1">
+                    {% csrf_token %}
+                    
+                    <p class="p-1">{{ eForm | crispy }}</p>
+                    <input type="hidden" id="" name="subForm" value="editProd">
+                    {% if selprodId %}
+                    <button type="submit" name="with_prod_id" class="btn btn-primary" value="{{selprodId}}" >Edit Product</button>
+                    {% else %}
+                    <button type="submit" name="button" class="btn btn-primary"  >Edit Product</button>
+                    {% endif %}
+                    <button type="submit" name="p_to_del" class="btn btn-danger" value="">Delete {{eForm.name.value}}</button>
+                </form>
+                {% endif %}
+                <br>
+                <br>
+            </div>
+        {% endif %}
+    
+    
+	{% else %} 
+    
+        
+		<br>
+		<h1 class="product_title text-center">Operation Successful </h1>
+        <br>
+		<br>
+		<div class="container">
+			<h3 style = "text-transform:capitalize;" > Dear {{Dear}},</h3>
+            {% if not pDeleted %}
+            
+            
+            <h4>    
+				<br>
+                The Product <span class="text-primary"><i>{{eName}}</i></span> has been Edited.
+                <br>
+                <br>
+                {% if theresPic %}
+                <div class="mx-auto bg-white mx-auto" style="display: flex;height:350px;width:200px;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);border-radius: 20px;">
+                <img class="m-auto" src="{{ EditProd.image.url}}" alt="any uploaded picture was supposed to show here" style="height:98%;max-height:300px">
+                </div>
+                {% else %}
+                <div class="row" >
+                <p class="col-6"><strong>category: </strong>{{pChanged.category}}<br><strong>price: </strong>€ {{pChanged.price}}<br><strong>stock: </strong>{{pChanged.stock}}<br><strong>available: </strong>{{pChanged.available}}<br><strong>latest: </strong>{{pChanged.latest}}<br><strong>best: </strong>{{pChanged.best}}<br><strong>description: </strong>{{pChanged.description}} </p>
+                <div class="mx-auto bg-white mx-auto col-6" style="display: flex;height:650px;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);">
+                <img class="m-auto" src="{{ pChanged.image.url}}" alt="any uploaded picture was supposed to show here" style="height:98%;width:90%;object-fit:scale-down;">
+                </div>
+                </div>
+
+
+            
+                {% endif %}
+                <a href="{% url 'edit_product' %}">Edit/Delete Another Product</a>
+                <br>
+                
+            </h4>
+
+            {% else %}
+
+            <h4>    
+				<br>
+                The Product <span class="text-primary"><i>{{pDeleted}}</i></span> has been <span class="text-danger">deleted.</span>
+                <br>
+                <br>
+                <a href="{% url 'edit_product' %}">Edit/Delete Another Product</a>
+                
+                <br>
+                
+            </h4>
+
+            {% endif %}
+
+
+		</div>
+
+        <br>
+	
+	
+    {% endif %}
+    </div>
+    <br>
+{% endblock %}    

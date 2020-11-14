@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+import os
 
 # Create your models here.
 
@@ -61,6 +62,8 @@ class CaroPics(models.Model):
     class Meta:
         verbose_name_plural = 'Caro Pics'
 
-    def __str__(self):
-        return self.image
+    # def __str__(self):
+    #     return self.image
 
+    def filename(self):
+        return os.path.basename(self.image.name)

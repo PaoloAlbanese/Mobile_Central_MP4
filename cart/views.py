@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 import stripe
 
+
 # We're in cart views.
 
 
@@ -21,7 +22,7 @@ def _cart_id(request):
 
 
 def add_cart(request, product_id):
-
+    
     product = Product.objects.get(id=product_id)
 
     if request.user.is_authenticated:
@@ -52,8 +53,9 @@ def add_cart(request, product_id):
             cart_item = CartItem.objects.create(
                 product=product, quantity=1, cart=cart)
             cart_item.save()
-
+    
     if 'source' in request.GET:
+        request.session['addedToCart'] = True
         return redirect(request.META.get('HTTP_REFERER'))
     else:
         return redirect('cart_detail')
@@ -175,9 +177,11 @@ def cart_remove(request, product_id):
             cart_item.save()
         else:
             cart_item.delete()
-
+    
     if 'source' in request.GET:
+        request.session['addedToCart'] = False
         return redirect(request.META.get('HTTP_REFERER'))
+
     else:
         return redirect('cart_detail')
 
@@ -196,7 +200,7 @@ def cart_remove_product(request, product_id):
         product = get_object_or_404(Product, id=product_id)
         cart_item = CartItem.objects.get(product=product, cart=cart)
         cart_item.delete()
-
+    request.session['addedToCart'] = False
     return redirect('cart_detail')
 
 
