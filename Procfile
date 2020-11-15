@@ -1,0 +1,1 @@
+web: gunicorn mobile_central.wsgi:application
