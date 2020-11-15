@@ -55,13 +55,15 @@ def add_cart(request, product_id):
             cart_item.save()
     
     if 'source' in request.GET:
-        request.session['addedToCart'] = True
+        
         return redirect(request.META.get('HTTP_REFERER'))
     else:
+        
         return redirect('cart_detail')
 
 
 def cart_detail(request, total=0, counter=0, cart_items=None):
+
 
     warnUser = request.session.get('warnUser')
     if not warnUser:
@@ -179,7 +181,6 @@ def cart_remove(request, product_id):
             cart_item.delete()
     
     if 'source' in request.GET:
-        request.session['addedToCart'] = False
         return redirect(request.META.get('HTTP_REFERER'))
 
     else:
@@ -200,7 +201,7 @@ def cart_remove_product(request, product_id):
         product = get_object_or_404(Product, id=product_id)
         cart_item = CartItem.objects.get(product=product, cart=cart)
         cart_item.delete()
-    request.session['addedToCart'] = False
+    
     return redirect('cart_detail')
 
 
@@ -223,7 +224,9 @@ def thanks_page(request, order_id):
 
     if order_id:
         customer_order = get_object_or_404(Order, id=order_id)
-
+        custName = customer_order.billingName
+        captName = custName.title()
+        print(captName)
         # email = str(request.user.email)
 
         # order = Order.objects.get(id=order_id, emailAddress=email)
@@ -240,4 +243,4 @@ def thanks_page(request, order_id):
                 str(item_qty) + " X € " + str(item_price) + \
                 ",subtotal: € " + str(sub_total)+","
 
-    return render(request, 'cart/thankyou.html', {'customer_order': customer_order, 'order': order, 'order_items': order_items, 'listone': listone, 'emailJSid': emailJSid, 'emailJSsendOrd': emailJSsendOrd, })
+    return render(request, 'cart/thankyou.html', {'customer_order': customer_order, 'order': order, 'order_items': order_items, 'listone': listone, 'emailJSid': emailJSid, 'emailJSsendOrd': emailJSsendOrd, 'captName':captName })

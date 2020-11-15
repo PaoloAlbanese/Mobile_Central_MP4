@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -126,6 +127,8 @@ DATABASES = {
 }
 
 
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -177,3 +180,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 EMAILJS_USER_ID = os.getenv ('EMAILJS_USER_ID','')
 EMAILJS_SIGNUP = os.getenv ('EMAILJS_SIGNUP','')
 EMAILJS_SENDORD = os.getenv ('EMAILJS_SENDORD','')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 25
+EMAIL_HOST_USER = os.getenv ('EMAIL_HOST_USER','')
+EMAIL_HOST_PASSWORD = os.getenv ('EMAIL_HOST_PASSWORD','')
+EMAIL_HOST_PASS = os.getenv ('EMAIL_HOST_PASS','')

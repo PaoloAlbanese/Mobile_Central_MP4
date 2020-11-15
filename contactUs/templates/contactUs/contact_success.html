@@ -6,6 +6,7 @@
 Mobile Central
 {% endblock %}
 {% block content %}
+<script src="https://smtpjs.com/v3/smtp.js"></script>
 <div class="text-center" style="margin-bottom:50px;">
     <div class="container" style="width:75%;">
 	<br>
@@ -35,7 +36,7 @@ Mobile Central
 
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 window.addEventListener("load", sendMessage());
 
 
@@ -64,6 +65,21 @@ function sendMessage(){
     
 
 }
-</script>
+</script>-->
 
+<script type="text/javascript">
+
+Email.send({
+    Host : "in-v3.mailjet.com",
+    Username : "f3afd5c712e2a861966c4fa4e58be6b0",
+    Password : "d88604054ab22dbd591f4ae99d101a7e",
+    To : 'paulitus_@hotmail.com',
+    From : "mobilecentral20@gmail.com",
+    Subject : "This is the subject",
+    Body : "And this is the body"
+}).then(
+  message => alert(message)
+);
+
+</script>
 {% endblock %}

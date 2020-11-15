@@ -14,14 +14,6 @@ def _cart_id(request):
 
 def types(request, num):
 
-    addedToCart=""
-
-    if 'addedToCart' in request.session:
-
-        cartA = request.session.get('addedToCart')
-        if cartA == True:
-            addedToCart = request.session['addedToCart']
-
     cart_items = ()
     in_cart=[]
     not_in_cart = []
@@ -118,7 +110,6 @@ def types(request, num):
     referer_view = get_referer_view(request)
 
     context = {
-        'addedToCart':addedToCart,
         'products': products,
         'callheader': callheader,
         'pageTitle': pageTitle,

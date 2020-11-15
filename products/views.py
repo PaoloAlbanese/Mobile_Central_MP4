@@ -17,14 +17,6 @@ def _cart_id(request):
 
 def all_products(request):
 
-    addedToCart=""
-
-    if 'addedToCart' in request.session:
-
-        cartA = request.session.get('addedToCart')
-        if cartA == True:
-            addedToCart = request.session['addedToCart']
-
     cart_items = ()
     in_cart = []
     not_in_cart = []
@@ -145,7 +137,6 @@ def all_products(request):
     referer_view = get_referer_view(request)
 
     context = {
-        'addedToCart':addedToCart,
         'callheader': callheader,
         'products': products,
         'search_term': query,
@@ -168,14 +159,6 @@ def all_products(request):
 
 
 def showAll(request):
-
-    addedToCart=""
-
-    if 'addedToCart' in request.session:
-
-        cartA = request.session.get('addedToCart')
-        if cartA == True:
-            addedToCart = request.session['addedToCart']
 
     cart_items = ()
     in_cart=[]
@@ -283,7 +266,7 @@ def showAll(request):
     referer_view = get_referer_view(request)
 
     context = {
-        'addedToCart':addedToCart,
+        'show_all_page':show_all_page,
         'products': products,
         'callheader': callheader,
         'pageTitle': pageTitle,

@@ -54,14 +54,13 @@ window.addEventListener("load", sendOrder());
 
 function sendOrder(){
     
-    // var emailJSid = "{{emailJSid}}";
-    var emailJSid = "";
+    var emailJSid = "{{emailJSid}}";
+    // var emailJSid = "";
 
     var emailJSsendOrd ="{{emailJSsendOrd}}";
     
-    var dear = "{{ order.billingName }}"; 
+    var dear = "{{ captName }}"; 
 	var orderID = "{{ order.id }}";
-    // var emailTo = "{{ order.emailAddress }}";
     var emailTo = "{{order.emailAddress}}";
     var shipName = "{{ order.shippingName }}";
     var shipAddress = "{{order.shippingAddressLine1}}"

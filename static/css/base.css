@@ -17,7 +17,7 @@ html { visibility:hidden; }
 /* {% static 'JS/BTT.js' %} */
 
 
-.addedToCart {
+/* .addedToCart {
     top: 0;
     left: 0;
     position: sticky;
@@ -30,7 +30,7 @@ html { visibility:hidden; }
     background-position: center;
     background-size: 20%;
     background-color:  #f3f3f3;
-}
+} */
 
 body{
     position:relative;

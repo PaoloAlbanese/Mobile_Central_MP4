@@ -2,10 +2,11 @@ from django.shortcuts import render
 from .forms import AddProductForm, AddBrandForm, AddSideForm, ProdList, EditProductForm 
 from products.models import Product, Category, CaroPics
 from home.views import get_referer_view
+from django.contrib.auth.decorators import login_required
 
 # We're in prodMgt views.
 
-
+@login_required(redirect_field_name='next',login_url='signin')
 def AddProduct(request):
     pName = ""
     AddProd = ()
@@ -51,7 +52,7 @@ def AddProduct(request):
     }
     return render(request, 'prodMgt/addProduct.html', context)
 
-
+@login_required(redirect_field_name='next',login_url='signin')
 def AddBrand(request):
     AddBrand=()
     bForm = AddBrandForm()
@@ -94,7 +95,7 @@ def AddBrand(request):
     }
     return render (request,'prodMgt/addBrand.html',context)
 
-
+@login_required(redirect_field_name='next',login_url='signin')
 def AddSidePic(request):
     AddSidePic=()
     cProduct=""
@@ -137,7 +138,7 @@ def AddSidePic(request):
     }
     return render (request,'prodMgt/addSidePicture.html',context)
 
-
+@login_required(redirect_field_name='next',login_url='signin')
 def EditProduct(request):
     EditProd=()
     eName=""
@@ -262,7 +263,7 @@ def EditProduct(request):
     }
     return render (request,'prodMgt/editProduct.html',context)
 
-
+@login_required(redirect_field_name='next',login_url='signin')
 def DelSidePic(request):
     lookupProd = ProdList()
     caropics=()
