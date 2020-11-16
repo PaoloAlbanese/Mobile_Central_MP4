@@ -25,7 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = '8^+k&wcy2&m)a#jxt%$cl826#m75d=8!-=oqp&_rl3-8o$&234'
 SECRET_KEY =  os.getenv ('SECRET_KEY','')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+# DEBUG = True
+DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['mm-mp4.herokuapp.com','localhost']
 
