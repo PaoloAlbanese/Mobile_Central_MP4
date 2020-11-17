@@ -4,8 +4,8 @@
         <a href="/" class="text-warning mx-auto rounded" style= "text-decoration:none;padding:3px;text-align: center;border:1px solid rgb(240, 173, 78);"><b>MOBILE CENTRAL</b></a>
         <button type="button" name="button" class="navbar-toggler bg-warning" data-toggle="collapse" data-target="#nav" ><span class="navbar-toggler-icon" ></span></button>	
         <div class="collapse navbar-collapse justify-content-between bg-dark py-2 px-1 rounded" id="nav" style="box-sizing: border-box;">
-        <ul class="navbar-nav">
-			<li class="nav-item dropdown bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-2 dropdown-toggle" href="" data-toggle="dropdown">Categories</a>
+        <ul class="navbar-nav" style="font-size: .9em;">
+			<li class="nav-item dropdown bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-3 dropdown-toggle" href="" data-toggle="dropdown">Categories</a>
 				<div class="dropdown-menu ">
 				{% for category in clinks %}
 				    <a class="dropdown-item " href="{% url 'types' category.id %}">{{category.name}}</a>
@@ -13,7 +13,7 @@
                     <a class="dropdown-item" href="{% url 'show_all' %}"><i class="fas fa-arrow-left"></i> All Products</a>
 				</div>
 			</li>
-            <li class="nav-item dropdown bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-3 dropdown-toggle" href="" data-toggle="dropdown">Brands</a>
+            <li class="nav-item dropdown bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-2 dropdown-toggle" href="" data-toggle="dropdown">Brands</a>
 				<div class="dropdown-menu">
                 {% for manufactorer in mlinks %}
                     <a class="dropdown-item" href="{% url 'brand' manufactorer.id %}">{{manufactorer.name}}</a>
@@ -21,11 +21,11 @@
                     <a class="dropdown-item" href="{% url 'show_all' %}"><i class="fas fa-arrow-left"></i> All Products</a>
 				</div>
 			</li>
-			<li class="nav-item bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'contact' %}">Contact</a></li>
-			<li class="nav-item bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-3" href="">About</a></li>
+			<li class="nav-item bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-2" href="{% url 'contact' %}">Contact</a></li>
+			
             
             {% if request.user.is_authenticated and request.user.first_name %}
-            <li class="nav-item dropdown bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-3 dropdown-toggle" data-toggle="dropdown">Welcome, {{ request.user.first_name }} <i class="fas fa-user-circle"></i> 
+            <li class="nav-item dropdown bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-2 dropdown-toggle" data-toggle="dropdown">Welcome, {{ request.user.first_name }} <i class="fas fa-user-circle"></i> 
             </a>
             <div class="dropdown-menu">
             <a href="{% url 'order_history' %}" class="dropdown-item">Order History</a>
@@ -34,18 +34,18 @@
             </li>   
             <li class="nav-item bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-2" href="{% url 'signout' %}">Sign Out <i class="fas fa-sign-out-circle"></i> </a></li>
             {% else %}
-            <li class="nav-item bg"><a class="nav-link text-light text-uppercase font-weight-bold px-2 " href="{% url 'signup' %}">Sign Up <i class="fas fa-user-plus"></i> </a></li>
-            <li class="nav-item bg"><a class="nav-link text-light text-uppercase font-weight-bold px-2" href="{% url 'signin' %}">Sign In <i class="fas fa-sign-in-alt"></i> </a></li>
+            <li class="nav-item bg"><a class="nav-link text-light text-uppercase font-weight-bold px-3 " href="{% url 'signup' %}">Sign Up <i class="fas fa-user-plus"></i> </a></li>
+            <li class="nav-item bg"><a class="nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'signin' %}">Sign In <i class="fas fa-sign-in-alt"></i> </a></li>
             {% endif %}
 			{% if item_count > 0 %}
             <li class="nav-item">
-				<a class="nav-link text-light text-uppercase font-weight-bold px-1" href="{% url 'cart_detail' %}">
+				<a class="nav-link text-light text-uppercase font-weight-bold px-3" href="{% url 'cart_detail' %}">
 					<i class="fas fa-shopping-cart"></i>({{item_count}})
 				</a>
             {% endif %}    
 			</li>
             {% if request.user.is_authenticated and request.user.is_staff %}
-            <li class="nav-item dropdown bg-dark"><a class="nav-link text-danger text-uppercase font-weight-bold px-3 dropdown-toggle" data-toggle="dropdown">Product Managment</a>
+            <li class="nav-item dropdown bg-dark"><a class="nav-link text-danger text-uppercase font-weight-bold px-2 dropdown-toggle" data-toggle="dropdown" >Product<br>Management</a>
             <div class="dropdown-menu">
             <a href="{% url 'add_product' %}" class="dropdown-item">Add a Product</a>
             <a href="{% url 'add_brand' %}" class="dropdown-item">add a Manufactorer</a>
