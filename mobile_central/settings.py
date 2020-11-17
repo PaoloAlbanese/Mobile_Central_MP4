@@ -214,6 +214,9 @@ EMAILJS_USER_ID = os.getenv ('EMAILJS_USER_ID','')
 EMAILJS_SIGNUP = os.getenv ('EMAILJS_SIGNUP','')
 EMAILJS_SENDORD = os.getenv ('EMAILJS_SENDORD','')
 
+EMAILJS_USER_MM = os.getenv ('EMAILJS_USER_MM','')
+EMAILJS_SENDMSG = os.getenv ('EMAILJS_SENDMSG','')
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True

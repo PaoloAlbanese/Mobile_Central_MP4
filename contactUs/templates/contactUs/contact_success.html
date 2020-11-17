@@ -1,6 +1,7 @@
 
 {% extends "base.html" %}
 {% load static %}
+<!-- { load timetags %} -->
 
 {% block title %}
 Mobile Central
@@ -36,15 +37,15 @@ Mobile Central
 
 
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 window.addEventListener("load", sendMessage());
 
 
 function sendMessage(){
     
-    var emailJSid = "{{emailJSid}}";
-
-    var emailJSsendMessage ="template_8w62l2b";
+    var emailJSidMM = "{{emailJSidMM}}";
+    
+    var emailJSsendMessage ="{{emailJSsendMessage}}";
 
     {% if request.user.is_authenticated and request.user.first_name %}
         var dear = "{{ name }}"; 
@@ -53,7 +54,8 @@ function sendMessage(){
     {% endif %}
     var message = ""
     var message = "{{ message }}";
-    
+    // var eTime="{{eTime}}";
+    var eTime="{% now "jS F Y H:i" %}"
     var subject = "{{ subject }}";
     var emailTo = "{{ emailTo }}";
     
@@ -61,11 +63,24 @@ function sendMessage(){
     console.log(subject);
     console.log(message);
     console.log(emailTo);
+    console.log(eTime)
+    console.log(emailJSidMM)
+    console.log(emailJSsendMessage)
+    
+    emailjs.init(emailJSidMM);
+        console.log('mace l ho ', emailJSidMM)
+	    emailjs.send("mmmp4",emailJSsendMessage,{
+	        "dear":dear,
+            "emailTo":emailTo,
+            "message":message,
+            "eTime":eTime,
+            "subject":subject,
 
+	    });
     
 
 }
-</script>-->
+</script>
 
 <!-- <script type="text/javascript">
 
