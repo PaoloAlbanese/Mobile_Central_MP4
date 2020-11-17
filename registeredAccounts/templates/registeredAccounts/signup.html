@@ -51,17 +51,21 @@ Create a New Account
 
 
 	</div>
+    <input type="hidden" id="emailJSid" name="variable" value="{{ emailJSid }}">
+    <input type="hidden" id="emailJSsignup" name="variable" value="{{emailJSsignup}}">
+
 	<script type="text/javascript">
     window.addEventListener("load", sendSignUp());
     
-	emailjs.init("{{emailJSid}}");
+    
+	
 	function sendSignUp(){
-    var emailJSid = "{{emailJSid}}";
-    var emailJSsignup ="{{emailJSsignup}}";
+    var emailJSid = document.getElementById("emailJSid").value;
+    var emailJSsignup = document.getElementById("emailJSsignup").value;
 	var dear = "{{dear}}"; 
 	var yourID = "{{yourID}}";
     var emailTo = "{{emailTo}}";
-
+    
     
 
         emailjs.init(emailJSid);

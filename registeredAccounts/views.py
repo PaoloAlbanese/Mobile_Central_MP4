@@ -1,5 +1,5 @@
 from django.conf import settings
-from . forms import SignUpForm, AuthContactForm
+from . forms import SignUpForm
 from cart.models import Cart, CartItem, Order, OrderItem
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import Group, User

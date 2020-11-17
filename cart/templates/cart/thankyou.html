@@ -47,6 +47,8 @@ Mobile Central
     <td class="text-center">€ {{ order.total }}</td>
 </tr>
 </table>
+<input type="hidden" id="emailJSid" name="variable" value="{{ emailJSid }}">
+<input type="hidden" id="emailJSsendOrd" name="variable" value="{{emailJSsendOrd}}">
 
 <script type="text/javascript">
 window.addEventListener("load", sendOrder());
@@ -54,10 +56,10 @@ window.addEventListener("load", sendOrder());
 
 function sendOrder(){
     
-    var emailJSid = "{{emailJSid}}";
-    // var emailJSid = "";
-
-    var emailJSsendOrd ="{{emailJSsendOrd}}";
+    var emailJSid = document.getElementById("emailJSid").value;
+    var emailJSsendOrd = document.getElementById("emailJSsendOrd").value;
+    
+    
     
     var dear = "{{ captName }}"; 
 	var orderID = "{{ order.id }}";

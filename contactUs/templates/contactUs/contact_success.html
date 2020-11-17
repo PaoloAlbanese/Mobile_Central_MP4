@@ -34,8 +34,11 @@ Mobile Central
     <h5>Has been successfully sent to the store owner.</h5>
     </div>
 </div>
+<input type="hidden" id="emailJSidMM" name="variable" value="{{ emailJSidMM }}">
+<input type="hidden" id="emailJSsendMessage" name="variable" value="{{emailJSsendMessage}}">
+<input type="hidden" id="messagge" name="variable" value="{{messagge}}">
 
-
+<!-- <script src="{% static 'sendMsg.js' %}"></script> -->
 
 <script type="text/javascript">
 window.addEventListener("load", sendMessage());
@@ -43,17 +46,22 @@ window.addEventListener("load", sendMessage());
 
 function sendMessage(){
     
-    var emailJSidMM = "{{emailJSidMM}}";
     
-    var emailJSsendMessage ="{{emailJSsendMessage}}";
-
+    var emailJSidMM = document.getElementById("emailJSidMM").value;
+    var emailJSsendMessage = document.getElementById("emailJSsendMessage").value;
+    // var message = document.getElementById("messagge").value.replace(/\\r\\n/g, " ");
+    // var message = document.getElementById("messagge").value.replace(/\n|<br\s*\/?>/gi, " ")
+    var message = document.getElementById("messagge").value.replace(/\n/, " ")
+    // var message = document.getElementById("messagge").multiLineString.replace(/\n|<br\s*\/?>/gi, "\r")
     {% if request.user.is_authenticated and request.user.first_name %}
         var dear = "{{ name }}"; 
     {% else %}
         var dear = "{{ name }}";
     {% endif %}
-    var message = ""
-    var message = "{{ message }}";
+    
+    
+    // message = message.replace(/[^a-zA-Z0-9]/g, "")
+    
     // var eTime="{{eTime}}";
     var eTime="{% now "jS F Y H:i" %}"
     var subject = "{{ subject }}";
@@ -64,11 +72,11 @@ function sendMessage(){
     console.log(message);
     console.log(emailTo);
     console.log(eTime)
-    console.log(emailJSidMM)
+    // console.log(emailJSidMM)
     console.log(emailJSsendMessage)
     
     emailjs.init(emailJSidMM);
-        console.log('mace l ho ', emailJSidMM)
+        console.log('mace l ho ')
 	    emailjs.send("mmmp4",emailJSsendMessage,{
 	        "dear":dear,
             "emailTo":emailTo,
