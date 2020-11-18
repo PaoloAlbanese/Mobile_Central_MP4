@@ -1,10 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
-{% if addedToCart %}
-<html lang="en" id="theHtml" class="addedToCart">
-{% else %}
+
 <html lang="en" id="theHtml" class="pageOverlay">
-{% endif %}
 
 <head>
 
@@ -87,7 +84,7 @@ $(document).ready(function() {
 
   
   document.getElementsByTagName("html")[0].style.visibility = "visible";
-//   theHtml.classList.remove("pageOverlay");
+
 
     while (classList.length > 0) {
    classList.remove(classList.item(0));

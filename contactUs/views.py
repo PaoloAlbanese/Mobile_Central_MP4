@@ -2,30 +2,17 @@
 from django.shortcuts import render
 from django.conf import settings
 from .forms import AuthContactForm, ContactForm
-from django.core.mail import send_mail
-from mailjet_rest import Client
-import os
-from django import template
-import datetime
-from time import gmtime, strftime
-from django.utils import dateformat, formats, timezone
-import re
-import unicodedata
 
 # We're in contactUs views.
 
 
 def contact(request):
     emailJSidMM = settings.EMAILJS_USER_MM
-    # emailJSid = ""
     emailJSsendMessage = settings.EMAILJS_SENDMSG
-    # emailJSsendMessage=""
-    dTime = datetime.datetime.now().date
-    # eTime=dTime.strftime("%Y-%m-%d %H:%M:%S")
-    eMessage=""
-    eSubject=""
-    captName=""
-    from_email=""
+    eMessage = ""
+    eSubject = ""
+    captName = ""
+    from_email = ""
 
     if request.method == "POST":
         if request.user.is_authenticated:
@@ -49,7 +36,11 @@ def contact(request):
             eMessage = form.cleaned_data.get('message')
             eSubject = form.cleaned_data.get('subject')
 
-            return render(request, 'contactUs/contact_success.html', {'message': eMessage, 'name': captName, 'emailTo': from_email, 'subject': eSubject, 'emailJSidMM': emailJSidMM,'emailJSsendMessage':emailJSsendMessage,})
+            return render(request, 'contactUs/contact_success.html',
+                          {'message': eMessage, 'name': captName,
+                           'emailTo': from_email,
+                           'subject': eSubject, 'emailJSidMM': emailJSidMM,
+                           'emailJSsendMessage': emailJSsendMessage, })
 
     else:
         if request.user.is_authenticated:

@@ -158,7 +158,7 @@
                                 {% for aitem in cart_items %}
                                     {% if aitem.product.id == product.id and forloop.last%}
                                         {% if aitem.quantity < product.stock  %}
-                                            <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-euro-sign" style=""></i></a>
+                                            <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto " ><i class="fas fa-plus"></i></a>
                                             <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         {% endif %}
                                         {% if aitem.quantity == product.stock %}
@@ -173,12 +173,12 @@
                                     {% if aitem.product.id == product.id and not forloop.last %}
                                         
                                         {% if aitem.quantity == product.stock %}
-                                            <i class="fas fa-ban text-warning my-auto my-auto mx-auto" ></i>
+                                            <i class="fas fa-ban text-danger my-auto my-auto mx-auto" ></i>
                                             <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         {% endif %}                            
 
                                         {% if aitem.product.id == product.id and aitem.quantity < product.stock  %}
-                                            <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto text-warning" onclick="SameScroll()"><i class="fas fa-store" style=""></i></a>
+                                            <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto"><i class="fas fa-plus"></i></a>
                                             <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         {% endif %}                            
                                     {% endif %}                              
@@ -187,7 +187,7 @@
                                 {% for i in in_cart %}
                                     {% if product.id == i %}
                                         {% if cart_items.product.i == product.stock %}
-                                        <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto text-dark" onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
+                                        <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto text-dark"><i class="fas fa-plus"></i></a>
                                         <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         {% endif %}
                                     {% endif %}
@@ -196,7 +196,7 @@
                                 
                                 {% for i in not_in_cart %}
                                     {% if product.id == i %}
-                                        <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto text-warning" onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
+                                        <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto"><i class="fas fa-plus"></i></a>
                                         <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         <span class=" my-auto mx-auto"></span>
                                     {% endif %}
@@ -212,7 +212,7 @@
 
                             {% if not cart_items %}
                             <span class="mx-auto my-auto" style="display: flex;justify-content:space-between;width:40%;border: 1px solid rgb(240, 173, 78); border-radius: 20px;height:91%;background-color:#f0f0f0;">
-                            <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-sms"></i></a>
+                            <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto "><i class="fas fa-plus"></i></a>
                             <i class="fas fa-shopping-cart my-auto mx-auto" style=""></i>
                             <span class=" my-auto mx-auto"></span>
                             
@@ -221,7 +221,7 @@
                             {% if cart_items %}
                             {% for item in cart_items %}
                             {% if item.product.id == product.id %}
-                            <a href="{% url 'cart_remove' product.id %}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-minus" style=""></i></a>
+                            <a href="{% url 'cart_remove' product.id %}?source=ind" class=" my-auto mx-auto"><i class="fas fa-minus"></i></a>
                             {% endif %}
                             {% endfor %}
                             {% endif %}

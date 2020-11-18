@@ -41,7 +41,6 @@ def brand(request, num):
     alphaVar = None
     alphaDir = "desc"
     euroL = None
-    euroR = None
     euroSortL = ""
     euroSortR = "fa-2x"
     euroDir = "asc"
@@ -57,7 +56,6 @@ def brand(request, num):
     if request.GET:
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
-            sort = sortkey
 
             if 'direction' in request.GET:
                 direction = request.GET['direction']

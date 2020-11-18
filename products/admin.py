@@ -6,6 +6,7 @@ from .models import Category, Manufactorer, Product, CaroPics
 admin.site.register(Category)
 admin.site.register(Manufactorer)
 
+
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'price', 'stock',
                     'category', 'latest', 'best', 'available']

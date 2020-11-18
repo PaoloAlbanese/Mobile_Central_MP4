@@ -22,14 +22,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '8^+k&wcy2&m)a#jxt%$cl826#m75d=8!-=oqp&_rl3-8o$&234'
-SECRET_KEY =  os.getenv ('SECRET_KEY','')
+
+SECRET_KEY = os.getenv('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# DEBUG = True
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['mm-mp4.herokuapp.com','localhost']
+ALLOWED_HOSTS = ['mm-mp4.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -77,7 +76,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'templates', 'allauth'),
-            
+
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -101,7 +100,7 @@ AUTHENTICATION_BACKENDS = [
 
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
-    
+
 ]
 
 SITE_ID = 1
@@ -133,8 +132,6 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
-
 
 
 # Password validation
@@ -186,13 +183,14 @@ if 'USE_AWS' in os.environ:
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
         'CacheControl': 'max-age=94608000',
     }
-    
+
     # Bucket Config
     AWS_STORAGE_BUCKET_NAME = 'mmmp4'
     AWS_S3_REGION_NAME = 'eu-west-1'
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3-eu-west-1.amazonaws.com'
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}\
+        .s3-eu-west-1.amazonaws.com'
 
     # Static and media files
     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
@@ -205,22 +203,14 @@ if 'USE_AWS' in os.environ:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
 
-STRIPE_PUBLISHABLE_KEY = os.getenv ('STRIPE_PUBLISHABLE_KEY','')
-STRIPE_SECRET_KEY = os.getenv ('STRIPE_SECRET_KEY','')
+STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-EMAILJS_USER_ID = os.getenv ('EMAILJS_USER_ID','')
-EMAILJS_SIGNUP = os.getenv ('EMAILJS_SIGNUP','')
-EMAILJS_SENDORD = os.getenv ('EMAILJS_SENDORD','')
+EMAILJS_USER_ID = os.getenv('EMAILJS_USER_ID', '')
+EMAILJS_SIGNUP = os.getenv('EMAILJS_SIGNUP', '')
+EMAILJS_SENDORD = os.getenv('EMAILJS_SENDORD', '')
 
-EMAILJS_USER_MM = os.getenv ('EMAILJS_USER_MM','')
-EMAILJS_SENDMSG = os.getenv ('EMAILJS_SENDMSG','')
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = os.getenv ('EMAIL_HOST_USER','')
-EMAIL_HOST_PASSWORD = os.getenv ('EMAIL_HOST_PASSWORD','')
-EMAIL_HOST_PASS = os.getenv ('EMAIL_HOST_PASS','')
+EMAILJS_USER_MM = os.getenv('EMAILJS_USER_MM', '')
+EMAILJS_SENDMSG = os.getenv('EMAILJS_SENDMSG', '')

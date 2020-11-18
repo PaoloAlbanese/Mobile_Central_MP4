@@ -6,16 +6,13 @@ import re
 
 # We're in home views.
 
-# def latest(request):
-#     """ A view to return the index page """
-
-#     return render(request, 'home/index.html')
 
 def _cart_id(request):
     cart = request.session.session_key
     if not cart:
         cart = request.session.create()
     return cart
+
 
 def latest(request):
 
@@ -43,17 +40,17 @@ def latest(request):
                         cart_item.save()
 
                         warnUser += "\n- the quantity for " + prod.name + \
-                            " has decreased in your cart due to stock reduction - "
+                            " has decreased in your cart" +\
+                            " due to stock reduction - "
                         request.session['warnUser'] = warnUser
 
-                        
                 if prod.stock == 0:
                     cart_item.delete()
 
                     warnUser += "\n- " + prod.name + \
-                        "- has run out of stock while it was still placed in the cart - "
+                        "- has run out of stock while " +\
+                        "it was still placed in the cart - "
                     request.session['warnUser'] = warnUser
-                    
 
         try:
 
@@ -61,39 +58,40 @@ def latest(request):
                 priortolog = request.session['priortolog']
                 olditems = CartItem.objects.filter(cart=priortolog)
 
-                
-                    
-
                 for cart_item in cart_items:
                     prod_id = cart_item.product.id
                     prod = Product.objects.get(id=prod_id)
                     cumulative_prod_qty = cart_item.quantity
                     for olditem in olditems:
                         if olditem.product.id == cart_item.product.id:
-                            cumulative_prod_qty = cart_item.quantity + olditem.quantity
+                            cumulative_prod_qty = cart_item.quantity +\
+                                olditem.quantity
                             if prod.stock > 0:
                                 if cumulative_prod_qty <= prod.stock:
                                     cart_item.quantity += olditem.quantity
                                     cart_item.save()
                                 else:
                                     cart_item.quantity = prod.stock
-                                    warnUser += "\n- the quantity for " + prod.name + \
-                                        " has been adjusted in your cart due to changed stock availability - "
+                                    warnUser += "\n- the quantity for "
+                                    + prod.name + \
+                                        " has been adjusted " + \
+                                        "in your cart due " + \
+                                        "to changed stock availability - "
                                     request.session['warnUser'] = warnUser
                             if prod.stock == 0:
                                 cart_item.delete()
                                 warnUser += "\n- " + prod.name + \
-                                    "- has run out of stock while it was being placed in the cart - "
+                                    "- has run out of stock while it " +\
+                                    "was being placed in the cart - "
                                 request.session['warnUser'] = warnUser
-                                
+
                     ids_in_user_cart.append(cart_item.product.id)
 
                 for olditem in olditems:
                     if olditem.product.id not in ids_in_user_cart:
                         userCartItem.objects.create(
-                            product=olditem.product, quantity=olditem.quantity, user=request.user)
-
-                
+                            product=olditem.product,
+                            quantity=olditem.quantity, user=request.user)
 
                 del request.session['priortolog']
 
@@ -118,7 +116,6 @@ def latest(request):
     alphaDir = "desc"
     AnnSort = ""
     euroL = None
-    euroR = None
     euroSortL = ""
     euroSortR = "fa-2x"
     euroDir = "asc"
@@ -134,7 +131,6 @@ def latest(request):
     if request.GET:
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
-            sort = sortkey
 
             if 'direction' in request.GET:
                 direction = request.GET['direction']
@@ -211,7 +207,7 @@ def latest(request):
 
 
 def get_referer_view(request, default=None):
-    ''' 
+    '''
     Return the referer view of the current request
 
     Example:
@@ -228,9 +224,9 @@ def get_referer_view(request, default=None):
         return default
 
     # remove the protocol and split the url at the slashes
+    # leave it cornflakes, this is actually correct.
     referer = re.sub('^https?:\/\/', '', referer).split('/')
 
     # add the slash at the relative path's view and finished
     referer = u'/' + u'/'.join(referer[1:])
     return referer
-

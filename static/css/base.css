@@ -14,23 +14,6 @@ html { visibility:hidden; }
     background-position: center;
     background-color:  #f3f3f3;
 }
-/* {% static 'JS/BTT.js' %} */
-
-
-/* .addedToCart {
-    top: 0;
-    left: 0;
-    position: sticky;
-    height: 100%;
-    width: 100%;
-    z-index: 9999;
-    display: block;
-    background-image: url("cart-148964_1280.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 20%;
-    background-color:  #f3f3f3;
-} */
 
 body{
     position:relative;
@@ -39,17 +22,13 @@ body{
     background: #f3f3f3;
     
     
-    
-    
 }
+
 ::-webkit-scrollbar {
     width: 0px;  /* Remove scrollbar space */
-     background: transparent;  /*Optional: just make scrollbar invisible */
+    background: transparent;  /*Optional: just make scrollbar invisible */
 }
-/* .nav_back{
-    background: url(/static/img/city-3947609_640.jpg);
 
-} */
 a:hover{ 
     text-decoration: none!important; 
 } 
@@ -104,16 +83,6 @@ a:hover{
   }
 }
 
-/* @media only screen and (max-width: 600px) {
-  .main_cart {
-    display: none;
-  }
-} */
-
-/* .main_cart{
-    width:0;
-    visibility: hidden;
-} */
 
 .btt-link {
     cursor: pointer;
@@ -131,36 +100,6 @@ a:hover{
 .row{
     margin:0!important;
 }
-/**
- * The CSS shown here will not be introduced in the Quickstart guide, but shows
- * how you can use CSS to style your Element's container.
- */
-/* .StripeElement {
-  box-sizing: border-box;
-
-  height: 40px;
-
-  padding: 10px 12px;
-
-  border: 1px solid transparent;
-  border-radius: 4px;
-  background-color: white;
-
-  box-shadow: 0 1px 3px 0 #e6ebf1;
-  -webkit-transition: box-shadow 150ms ease;
-  transition: box-shadow 150ms ease;
-}
-
-.StripeElement--focus {
-  box-shadow: 0 1px 3px 0 #cfd7df;
-}
-
-.StripeElement--invalid {
-  border-color: #fa755a;
-}
-
-.StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;} */
 
 .stripe-button-el{
 
@@ -174,14 +113,13 @@ a:hover{
 .stripe-button-el span {
 
     height:36px!important;
-    
-    
+       
     
 }
 
-.cart_table{
+/* .cart_table{
     min-width: 00px;
-}
+} */
 
 .errorlist li{
 
@@ -205,13 +143,6 @@ a:hover{
 
 -------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-
-/* * {box-sizing: border-box}
-body {font-family: Verdana, sans-serif; margin:0}
-.mySlides {display: none}
-img {vertical-align: middle;} */
-
-/* .mySlides {display: none} */
 
 /* Slideshow container */
 .slideshow-container {
@@ -278,7 +209,6 @@ img {vertical-align: middle;} */
 
 .gradient-text {
     background-color: rgb(0, 81, 255);
-    /* background-image: linear-gradient(90deg,rgb(139,0,0) 20%, rgba(51, 71, 255, 0.075),navy); */
     background-image: linear-gradient(90deg,rgb(77, 9, 60) 5%, rgba(51, 71, 255, 0.075),navy );
     background-size: 105%;
     -webkit-background-clip: text;

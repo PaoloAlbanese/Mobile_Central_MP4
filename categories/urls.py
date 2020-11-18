@@ -5,5 +5,5 @@ from . import views
 
 urlpatterns = [
     path('types/<int:num>/', views.types, name='types'),
-       
+
 ]

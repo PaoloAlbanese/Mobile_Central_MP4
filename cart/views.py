@@ -1,7 +1,6 @@
-from django.shortcuts import render
-from products.models import Category, Product, Manufactorer
+from products.models import Product
 from .models import Cart, CartItem, Order, OrderItem, userCartItem
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 import stripe
@@ -22,7 +21,7 @@ def _cart_id(request):
 
 
 def add_cart(request, product_id):
-    
+
     product = Product.objects.get(id=product_id)
 
     if request.user.is_authenticated:
@@ -53,17 +52,16 @@ def add_cart(request, product_id):
             cart_item = CartItem.objects.create(
                 product=product, quantity=1, cart=cart)
             cart_item.save()
-    
+
     if 'source' in request.GET:
-        
+
         return redirect(request.META.get('HTTP_REFERER'))
     else:
-        
+
         return redirect('cart_detail')
 
 
 def cart_detail(request, total=0, counter=0, cart_items=None):
-
 
     warnUser = request.session.get('warnUser')
     if not warnUser:
@@ -112,7 +110,8 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
 
             customer = stripe.Customer.create(email=email, source=token)
             charge = stripe.Charge.create(
-                amount=stripe_total, currency='eur', description=description, customer=customer.id)
+                amount=stripe_total, currency='eur',
+                description=description, customer=customer.id)
 
             # Create the Order
 
@@ -137,7 +136,9 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
                 order_details.save()
                 for order_item in cart_items:
                     or_item = OrderItem.objects.create(
-                        product=order_item.product.name, quantity=order_item.quantity, price=order_item.product.price, order=order_details)
+                        product=order_item.product.name,
+                        quantity=order_item.quantity,
+                        price=order_item.product.price, order=order_details)
                     or_item.save()
 
                     # Reduce Stock
@@ -156,7 +157,12 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
         except stripe.error.CardError as e:
             return False, e
 
-    return render(request, 'cart/cart.html', dict(cart_items=cart_items, total=total, counter=counter, data_key=data_key, stripe_total=stripe_total, description=description, warnUser=warnUser))
+    return render(request, 'cart/cart.html', dict(cart_items=cart_items,
+                                                  total=total, counter=counter,
+                                                  data_key=data_key,
+                                                  stripe_total=stripe_total,
+                                                  description=description,
+                                                  warnUser=warnUser))
 
 
 def cart_remove(request, product_id):
@@ -179,7 +185,7 @@ def cart_remove(request, product_id):
             cart_item.save()
         else:
             cart_item.delete()
-    
+
     if 'source' in request.GET:
         return redirect(request.META.get('HTTP_REFERER'))
 
@@ -201,7 +207,7 @@ def cart_remove_product(request, product_id):
         product = get_object_or_404(Product, id=product_id)
         cart_item = CartItem.objects.get(product=product, cart=cart)
         cart_item.delete()
-    
+
     return redirect('cart_detail')
 
 
@@ -226,12 +232,7 @@ def thanks_page(request, order_id):
         customer_order = get_object_or_404(Order, id=order_id)
         custName = customer_order.billingName
         captName = custName.title()
-        print(captName)
-        # email = str(request.user.email)
-
-        # order = Order.objects.get(id=order_id, emailAddress=email)
         order = Order.objects.get(id=order_id)
-        # email = order.emailAddress
         order_items = OrderItem.objects.filter(order=order)
         for item in order_items:
             sub_total = item.quantity * item.price
@@ -243,4 +244,8 @@ def thanks_page(request, order_id):
                 str(item_qty) + " X € " + str(item_price) + \
                 ",subtotal: € " + str(sub_total)+","
 
-    return render(request, 'cart/thankyou.html', {'customer_order': customer_order, 'order': order, 'order_items': order_items, 'listone': listone, 'emailJSid': emailJSid, 'emailJSsendOrd': emailJSsendOrd, 'captName':captName })
+    return render(request, 'cart/thankyou.html',
+                  {'customer_order': customer_order, 'order': order,
+                   'order_items': order_items, 'listone': listone,
+                   'emailJSid': emailJSid,
+                   'emailJSsendOrd': emailJSsendOrd, 'captName': captName})

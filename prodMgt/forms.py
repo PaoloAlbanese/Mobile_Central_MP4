@@ -1,36 +1,47 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 from products.models import Product, Manufactorer, CaroPics
-from django.forms import ModelForm, ModelChoiceField
+from django.forms import ModelForm
 
-#We're in prdMgt forms.
+# We're in prdMgt forms.
+
 
 class AddProductForm(ModelForm):
     prefix = 'addproduct'
+
     class Meta:
         model = Product
-        fields =('category','manufactorer','name','description','price','image','stock','available','latest','best',)
-        
+        fields = ('category', 'manufactorer', 'name', 'description',
+                  'price', 'image', 'stock', 'available', 'latest', 'best',)
+
 
 class AddBrandForm(ModelForm):
     prefix = 'addbrand'
+
     class Meta:
         model = Manufactorer
         fields = ('name',)
 
+
 class AddSideForm(ModelForm):
     class Meta:
         model = CaroPics
-        fields = ('product','image',)
+        fields = ('product', 'image',)
 
 
 class ProdList(forms.Form):
-    lookupProd = forms.ModelChoiceField(label="Product", queryset=Product.objects.all().order_by('name'), empty_label="(Select Product)",widget=forms.Select(attrs={'onchange': 'this.form.submit();'}))
-    
+    lookupProd = forms.ModelChoiceField(label="Product",
+                                        queryset=Product.objects.all()
+                                        .order_by(
+                                            'name'),
+                                        empty_label="(Select Product)",
+                                        widget=forms.Select(attrs={
+                                            'onchange':
+                                            'this.form.submit();'}))
+
+
 class EditProductForm(ModelForm):
-    
+
     class Meta:
         model = Product
-        fields =('category','manufactorer','name','description','price','image','stock','available','latest','best',)
-        
+        fields = ('category', 'manufactorer', 'name', 'description',
+                  'price', 'image', 'stock', 'available', 'latest', 'best',)

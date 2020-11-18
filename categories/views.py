@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
-from products.models import Category, Manufactorer, Product, CaroPics
+from django.shortcuts import render
+from products.models import Category, Product
 from home.views import get_referer_view
 from django.core.exceptions import ObjectDoesNotExist
 from cart.models import userCartItem, CartItem, Cart
 
 # We're in categories views
+
 
 def _cart_id(request):
     cart = request.session.session_key
@@ -12,34 +13,34 @@ def _cart_id(request):
         cart = request.session.create()
     return cart
 
+
 def types(request, num):
 
     cart_items = ()
-    in_cart=[]
+    in_cart = []
     not_in_cart = []
 
     if request.user.is_authenticated:
         try:
-            cart_items=userCartItem.objects.filter(user=request.user)
+            cart_items = userCartItem.objects.filter(user=request.user)
         except ObjectDoesNotExist:
             pass
     else:
         try:
-            cart=Cart.objects.get(cart_id=_cart_id(request))
-            cart_items=CartItem.objects.filter(cart=cart,active=True)
+            cart = Cart.objects.get(cart_id=_cart_id(request))
+            cart_items = CartItem.objects.filter(cart=cart, active=True)
         except ObjectDoesNotExist:
             pass
 
     callheader = Category.objects.get(id=num)
     products = Product.objects.filter(category=num)
-    pageTitle= Category.objects.get(id=num)
+    pageTitle = Category.objects.get(id=num)
     thisView = "types"
-    alphaArrow="fa-sort-alpha-up"
+    alphaArrow = "fa-sort-alpha-up"
     alphaVar = None
-    alphaDir ="desc"
-    AnnSort=""
-    euroL=None
-    euroR=None
+    alphaDir = "desc"
+    AnnSort = ""
+    euroL = None
     euroSortL = ""
     euroSortR = "fa-2x"
     euroDir = "asc"
@@ -47,7 +48,6 @@ def types(request, num):
     if cart_items:
         for i in cart_items:
             in_cart.append(i.product.id)
-        
 
         for product in products:
             if product.id not in in_cart:
@@ -56,8 +56,6 @@ def types(request, num):
     if request.GET:
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
-            sort = sortkey
-            
 
             if 'direction' in request.GET:
                 direction = request.GET['direction']
@@ -67,8 +65,8 @@ def types(request, num):
 
             if sortkey == 'name':
                 if direction == 'asc':
-                   AnnSort = "(A to Z)" 
-                elif direction == 'desc': 
+                    AnnSort = "(A to Z)"
+                elif direction == 'desc':
                     AnnSort = " (Z to A)"
                 elif alphaDir == 'asc':
                     AnnSort = "(A to Z)"
@@ -85,26 +83,25 @@ def types(request, num):
             alphaVar = request.GET['alphaArrow']
             if alphaVar == "fa-sort-alpha-up":
                 alphaArrow = "fa-sort-alpha-down"
-                alphaDir ="asc"
+                alphaDir = "asc"
                 AnnSort = " (Z to A)"
             else:
                 alphaArrow = "fa-sort-alpha-up"
-                alphaDir ="desc"
+                alphaDir = "desc"
                 AnnSort = " (A to Z)"
 
         if 'euroSortL' in request.GET:
-            euroL= request.GET['euroSortL']
+            euroL = request.GET['euroSortL']
             if euroL == "fa-2x":
-                euroSortL=""
-                euroSortR="fa-2x"
-                euroDir="asc"
+                euroSortL = ""
+                euroSortR = "fa-2x"
+                euroDir = "asc"
                 AnnSort = "(Cheapest Last)"
             else:
-                euroSortL="fa-2x"
-                euroSortR=""
-                euroDir="desc"
-                AnnSort = "(Cheapest First)"  
-
+                euroSortL = "fa-2x"
+                euroSortR = ""
+                euroDir = "desc"
+                AnnSort = "(Cheapest First)"
 
     this_url = request.path
     referer_view = get_referer_view(request)
@@ -113,19 +110,19 @@ def types(request, num):
         'products': products,
         'callheader': callheader,
         'pageTitle': pageTitle,
-        'thisView' : thisView,
-        'num':num,
-        'alphaArrow':alphaArrow,
-        'alphaDir':alphaDir,
-        'euroSortL':euroSortL,
-        'euroSortR':euroSortR,
-        'euroDir':euroDir,
-        'AnnSort':AnnSort,
-        'cart_items':cart_items,
-        'not_in_cart':not_in_cart,
-        'this_url':this_url,
-        'referer_view':referer_view,
-        
+        'thisView': thisView,
+        'num': num,
+        'alphaArrow': alphaArrow,
+        'alphaDir': alphaDir,
+        'euroSortL': euroSortL,
+        'euroSortR': euroSortR,
+        'euroDir': euroDir,
+        'AnnSort': AnnSort,
+        'cart_items': cart_items,
+        'not_in_cart': not_in_cart,
+        'this_url': this_url,
+        'referer_view': referer_view,
+
     }
 
     return render(request, 'categories/categories.html', context)

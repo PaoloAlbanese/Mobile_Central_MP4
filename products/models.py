@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth.models import User
 import os
 
 # Create your models here.
@@ -32,11 +31,15 @@ class Product(models.Model):
     manufactorer = models.ForeignKey(
         'Manufactorer', null=True, blank=False,
         on_delete=models.SET_NULL,
-        help_text='if missing, you can add the manufactorer on the dedicated form on this page')
+        help_text='if missing, you can add the manufactorer on the dedicated'
+        ' link under \"Product Management\".')
     name = models.CharField(max_length=254,)
     description = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField (blank=False, null=False, default='mobile-2468068_1920.jpg')                          
+    price = models.DecimalField(max_digits=10, decimal_places=2,
+                                help_text="price in euro")
+    image = models.ImageField(blank=False, null=False,
+                              default='mobile-2468068_1920.jpg',
+                              help_text='minimum 235x460 px please.')
     stock = models.IntegerField()
     available = models.BooleanField(default=True)
     latest = models.BooleanField(default=False)
@@ -59,8 +62,8 @@ class CaroPics(models.Model):
     class Meta:
         verbose_name_plural = 'Caro Pics'
 
-    # def __str__(self):
-    #     return self.image
+    def __str__(self):
+        return self.name
 
     def filename(self):
         return os.path.basename(self.image.name)

@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-#We're in prodMGT views.
+# We're in prodMGT views.
 
 urlpatterns = [
     path('add_product/', views.AddProduct, name='add_product'),
@@ -10,5 +10,4 @@ urlpatterns = [
     path('edit_product/', views.EditProduct, name='edit_product'),
     path('del_side_pic/', views.DelSidePic, name='del_side_pic'),
 
-    
 ]
