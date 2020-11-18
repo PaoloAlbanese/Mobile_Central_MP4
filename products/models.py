@@ -36,9 +36,6 @@ class Product(models.Model):
     name = models.CharField(max_length=254,)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    # image = models.ImageField(upload_to='media/', blank=False,
-    #                           null=False,
-    #                           default='mobile-2468068_1920.png')
     image = models.ImageField (blank=False, null=False, default='mobile-2468068_1920.jpg')                          
     stock = models.IntegerField()
     available = models.BooleanField(default=True)

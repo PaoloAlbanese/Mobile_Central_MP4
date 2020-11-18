@@ -27,7 +27,7 @@ Mobile Central
 	<h5>Your message :</h5>
     <br>
     
-    <h6 style="font-style: italic;"> {{ message }} </h6>
+    <h6 style="font-style: italic;" id="message"> {{ message }} </h6>
     
     <br>
     <br>
@@ -36,9 +36,9 @@ Mobile Central
 </div>
 <input type="hidden" id="emailJSidMM" name="variable" value="{{ emailJSidMM }}">
 <input type="hidden" id="emailJSsendMessage" name="variable" value="{{emailJSsendMessage}}">
-<input type="hidden" id="messagge" name="variable" value="{{messagge}}">
 
-<!-- <script src="{% static 'sendMsg.js' %}"></script> -->
+
+
 
 <script type="text/javascript">
 window.addEventListener("load", sendMessage());
@@ -49,31 +49,19 @@ function sendMessage(){
     
     var emailJSidMM = document.getElementById("emailJSidMM").value;
     var emailJSsendMessage = document.getElementById("emailJSsendMessage").value;
-    // var message = document.getElementById("messagge").value.replace(/\\r\\n/g, " ");
-    // var message = document.getElementById("messagge").value.replace(/\n|<br\s*\/?>/gi, " ")
-    var message = document.getElementById("messagge").value.replace(/\n/, " ")
-    // var message = document.getElementById("messagge").multiLineString.replace(/\n|<br\s*\/?>/gi, "\r")
+    
+    var message = document.getElementById("message").innerHTML;
+    
     {% if request.user.is_authenticated and request.user.first_name %}
         var dear = "{{ name }}"; 
     {% else %}
         var dear = "{{ name }}";
     {% endif %}
     
-    
-    // message = message.replace(/[^a-zA-Z0-9]/g, "")
-    
-    // var eTime="{{eTime}}";
     var eTime="{% now "jS F Y H:i" %}"
     var subject = "{{ subject }}";
     var emailTo = "{{ emailTo }}";
     
-    console.log(dear);
-    console.log(subject);
-    console.log(message);
-    console.log(emailTo);
-    console.log(eTime)
-    // console.log(emailJSidMM)
-    console.log(emailJSsendMessage)
     
     emailjs.init(emailJSidMM);
         console.log('mace l ho ')
@@ -90,19 +78,4 @@ function sendMessage(){
 }
 </script>
 
-<!-- <script type="text/javascript">
-
-Email.send({
-    Host : "in-v3.mailjet.com",
-    Username : "f3afd5c712e2a861966c4fa4e58be6b0",
-    Password : "d88604054ab22dbd591f4ae99d101a7e",
-    To : 'paulitus_@hotmail.com',
-    From : "mobilecentral20@gmail.com",
-    Subject : "This is the subject",
-    Body : "And this is the body"
-}).then(
-  message => alert(message)
-);
-
-</script> -->
 {% endblock %}
