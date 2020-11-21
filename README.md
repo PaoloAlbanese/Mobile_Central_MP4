@@ -32,6 +32,7 @@ Customers can make specific queries via contact form.
 ### User Stories
 
 As a .. | I want to .. | So I can ..
+ --- | --- | --- 
 New customer | Immediately learn the nature of the business | Determine quickly if the product I seek can be found in the store
 Potential customer | easily navigate through the site | Find quickly the desired product/related information
 Commited customer | easily and clearly be guided through the payment process | Finalize the transaction and secure the desired product
@@ -43,7 +44,7 @@ Store clerck | Access the store database | update prices and stock quantities, t
 
 ### Wireframes
 
-[Landing page](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Landing%20page%20wireframe.png)
+[Landing page](/MM Add Product page wireframe.png)
 [ Categories ](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Categories%20page.png)
 [Contact page](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Contact%20page%20wireframe.png)
 [Contact page signed in](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Contact%20page%20Signed%20In%20wireframe.png)
