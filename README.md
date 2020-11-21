@@ -1,7 +1,7 @@
 
 # Mobile Central
 ---
-<!-- permalink: home/index.html -->
+permalink: /index.html
 ---
 
 A online shop's portal specilaized in mobile phones.  
