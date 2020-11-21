@@ -44,15 +44,16 @@ Store clerck | Access the store database | update prices and stock quantities, t
 
 ### Wireframes
 
-[Landing page](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Landing+page+wireframe.png)
-[ Categories ](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Categories+page.png)
-[Contact page](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Contact+page+wireframe.png)
-[Contact page signed in](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Contact+page+Signed+In+wireframe.png)
-[Product page](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+product+page+wireframe.png)
-[Sign in page](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Sign+In+page+wireframe.png)
-[Sign up form](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Sign+Up+page+wireframe.png)
-[Cart page](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+cart+page+wireframe.png)
-[Thank You page](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+thank+you+page+wireframe.png)
-[Orders List](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Ordres+List+wireframe.png)
-[Add product](MM Add Product page wireframe.png)
+* [Landing page](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Landing+page+wireframe.png)
+* [[Categories](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Categories+page.png)
+* [[Contact page](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Contact+page+wireframe.png)
+* [[Contact page signed in](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Contact+page+Signed+In+wireframe.png)
+* [[Product page](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+product+page+wireframe.png)
+* [[Sign in page](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Sign+In+page+wireframe.png)
+* [[Sign up form](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Sign+Up+page+wireframe.png)
+* [[Cart page](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+cart+page+wireframe.png)
+* [[Thank You page](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+thank+you+page+wireframe.png)
+* [[Orders List](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Ordres+List+wireframe.png)
+* [[Add product](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Add+Product+page+wireframe.png)
 
+---
