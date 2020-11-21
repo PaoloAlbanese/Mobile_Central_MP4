@@ -1,8 +1,6 @@
 
 # Mobile Central
----
-permalink: /index.html
----
+
 
 A online shop's portal specilaized in mobile phones.  
 The main typologies of the products on sale are Smartphones and old-fashioned flip phones/lcd display phones, collectively grouped under the nostalgic header "GSM".
