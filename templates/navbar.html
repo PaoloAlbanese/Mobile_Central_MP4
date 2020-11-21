@@ -3,8 +3,8 @@
         <a href="{% url 'show_all' %}" class="navbar-brand"><i class="fas fa-mobile-alt text-warning fa-2x"></i></a>
         <a href="/" class="text-warning mx-auto rounded" style= "text-decoration:none;padding:3px;text-align: center;border:1px solid rgb(240, 173, 78);"><b>MOBILE CENTRAL</b></a>
         <button type="button" name="button" class="navbar-toggler bg-warning" data-toggle="collapse" data-target="#nav" ><span class="navbar-toggler-icon" ></span></button>	
-        <div class="collapse navbar-collapse justify-content-between bg-dark py-2 px-1 rounded" id="nav" style="box-sizing: border-box;overflow:hidden">
-        <ul class="navbar-nav" >
+        <div class="collapse navbar-collapse justify-content-between bg-dark py-2 px-1 rounded" id="nav" style="box-sizing: border-box;">
+        <ul class="navbar-nav"  >
 			<li class="nav-item dropdown bg-dark"><a class="nav-link text-light text-uppercase font-weight-bold px-3 dropdown-toggle" data-toggle="dropdown">Categories</a>
 				<div class="dropdown-menu ">
 				{% for category in clinks %}
@@ -67,4 +67,4 @@
 		</form>       
         </div>
 </nav>
-<marquee behavior="scroll" direction="left" class="bg-danger text-warning px-0" style="height:22px;display:block;position:sticky;top:56px;left:0;right:0;z-index:4; vertical-align: text-top;" scrollamount="10"><i class="fas fa-exclamation-triangle"></i> Please be aware, this only a <strong>TEST</strong> website! No real products are being sold nor are any payment transactions actually taking place! <i class="fas fa-exclamation-triangle"></i></marquee>
+<marquee behavior="scroll" direction="left" class="bg-danger text-warning px-0" style="height:22px;display:block;position:sticky;top:58px;left:0;right:0;z-index:2; vertical-align: text-top;" scrollamount="10"><i class="fas fa-exclamation-triangle"></i> Please be aware, this only a <strong>TEST</strong> website! No real products are being sold nor are any actual payment transactions taking place! <i class="fas fa-exclamation-triangle"></i></marquee>

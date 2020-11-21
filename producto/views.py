@@ -16,13 +16,15 @@ def productPage(request, product_id):
         Review.objects.create(
             product=producto, user=request.user,
             content=request.POST['content'])
-
+    
+    this_url = request.path
     reviews = Review.objects.filter(product=producto,)
     caropics = CaroPics.objects.filter(product=producto)
     context = {
         'producto': producto,
         'reviews': reviews,
         'caropics': caropics,
+        'this_url':this_url,
 
     }
 

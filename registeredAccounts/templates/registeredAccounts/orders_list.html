@@ -13,6 +13,7 @@ Your Order History
 </h1>
 <br>
 {% if order_details %}
+<div class="table-responsive mx-auto" style="width:98%;">
 <table class="table table-striped">
 <thead>
     <tr>
@@ -28,13 +29,14 @@ Your Order History
 <tr>
     <td>{{ order.id }}</td>
     <td>{{ order.created|date:"d M Y"}}</td>
-    <td>{{ order.total }}</td>
+    <td>€ {{ order.total }}</td>
     <td><i class="fas fa-check"></i></td>
     <td><a href="{% url 'order_detail' order.id %}">View Order</a></td>
 </tr>
 {% endfor %}
 </tbody>
 </table>
+<div>
 {% else %}
 <p>You have not placed your first order yet
 <br><br>

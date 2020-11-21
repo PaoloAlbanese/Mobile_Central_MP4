@@ -25,7 +25,7 @@ Mobile Central
 	<p>We have received your order and We will be processing it right away. An email has been sent to you. It contains
 		details of the items you purchased</p>
 </div>
-
+<div class="table-responsive">
 <table id="summary" class="table table-bordered mx-auto" style="width:70%;">
 <tr class="text-center">
     <td><b>Product Description</b></td>
@@ -47,6 +47,7 @@ Mobile Central
     <td class="text-center">€ {{ order.total }}</td>
 </tr>
 </table>
+</div>
 <input type="hidden" id="emailJSid" name="variable" value="{{ emailJSid }}">
 <input type="hidden" id="emailJSsendOrd" name="variable" value="{{emailJSsendOrd}}">
 

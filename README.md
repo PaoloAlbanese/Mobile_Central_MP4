@@ -1,45 +1,57 @@
-<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
 
-Welcome PaoloAlbanese,
+# Mobile Central
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
+A online shop's portal specilaized in mobile phones.  
+The main typologies of the products on sale are Smartphones and old-fashioned flip phones/lcd display phones, collectively grouped under the nostalgic header "GSM".
+Users can avail of navigation menu links to browse the site, search products, look up individual product descriptions, post comments, read and (as registered users) write products reviews, contact the store owner via the contact form.
+The Website offers users the option of becoming registred users and thus being able of persisting their carts between visits, post reviews, and view/print their orders history.
+It is not necessary to be a registred user to place an order.
 
-## Gitpod Reminders
+The goals of the website are:
+* to maximise sales with its presence on the internet; 
+* showcasing products and thus raising public awareness of the Business;
+* affiliate customers with the conveniences that come with a registered account. 
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+The goals of the website users are:
+* quickly obtain visual clues and information on mobile phones on offer, such as product description and reviews left by other website users;
+* easily complete purchase of products of interest.
 
-`python3 -m http.server`
+---
 
-A blue button should appear to click: *Make Public*,
 
-Another blue button should appear to click: *Open Browser*.
+## UX
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+There types of clientele sought are two : 
 
-A blue button should appear to click: *Make Public*,
+* enthusiast mobiles users who are always up to date with latest technologies and fashonable items on the market, these are prepared to spend a substantial amount of money for a well rounded product.
+* common mobiles users who see the product more as a neccessity than a fancy thing to have; they will settle for a product that meet their minimal expectations with the least inpact on their finances. 
 
-Another blue button should appear to click: *Open Browser*.
+The website addresses the needs of both with a division in two main categories amd with a clear display of products from each in the landing page. Product descriptions and reviews are available to allow customers to make an informed decision. 
+Customers can make specific queries via contact form.
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### User Stories
 
-## Updates Since The Instructional Video
+As a .. | I want to .. | So I can ..
+New customer | Immediately learn the nature of the business | Determine quickly if the product I seek can be found in the store
+Potential customer | easily navigate through the site | Find quickly the desired product/related information
+Commited customer | easily and clearly be guided through the payment process | Finalize the transaction and secure the desired product
+Potential customer | Avail of enough, to-the-point information on the merchandise | Make an informed decision on whether or not I should purchase a product
+New/Returning Customer | Send specific queries to the store owner | Obtain more information than what found on the website/Leave feedback on my experience with the site
+Registred User | Access my order history | Keep track of my expenses or resolve disputes
+Registred User | Have my cart persited between visits | Do without having to restart the entire process when I make a resolute decision to buy
+Store clerck | Access the store database | update prices and stock quantities, thus mainataining the information on the website up to date
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### Wireframes
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+[Landing page](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Landing%20page%20wireframe.png)
+[ Categories ](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Categories%20page.png)
+[Contact page](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Contact%20page%20wireframe.png)
+[Contact page signed in](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Contact%20page%20Signed%20In%20wireframe.png)
+[Product page](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20product%20page%20wireframe.png)
+[Sign in page](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Sign%20In%20page%20wireframe.png)
+[Sign up form](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Sign%20Up%20page%20wireframe.png)
+[Cart page](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20cart%20page%20wireframe.png)
+[Thank You page](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20thank%20you%20page%20wireframe.png)
+[Orders List](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Ordres%20List%20wireframe.png)
+[Add product](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Add%20Product%20page%20wireframe.png)
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
---------
-
-Happy coding!
