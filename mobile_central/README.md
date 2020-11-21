@@ -60,8 +60,8 @@ Store clerck | Access the store database | update prices and stock quantities, t
 
 ## Features
 
-* Navigation bar, present at the top of all pages, includes: 
-* * Header Logo, in the shape of a Smartphone, is situated at the top left of the screen, the first item on the Navbar from the left. shows on all pages. On click, it redirects to a display of all the products on sale.
+* The navigation bar, present at the top of all pages, includes: 
+* * A Logo, in the shape of a Smartphone, is situated at the top left of the screen, the first item on the Navbar from the left. shows on all pages. On click, it redirects to a display of all the products on sale.
 * * The Business' name "Mobile Central" second from the left on large screens, dead in the middle on small screens. On click, it brings back to the landing page, as a "Home" button would.
 * * A collapsible dropdown menu containing links to  other sections of the website, submenus, and a search box. On small screens it shows collapsed as an hamburger button, while on large screens the first level items of the dropdown menu are displayed horizontally along the navbar.
 * The Landing or "Home" page. 
@@ -86,8 +86,8 @@ Store clerck | Access the store database | update prices and stock quantities, t
 * The cart page.
 * * Accessed by the "Add to cart" link on the product page or by clicking on the cart icon on the navbar, which appears after a product is placed in the cart.
 * * Composed of two main section,
-* * * the first is a series of rows for each product in the cart, with their image, name, SKU, price, quantity in the cart, and cost subtotal, and "+", "-", and trash icons. These icons' functions are to increase, decrease, or remove althogheter the product from the cart.
-* * * the second component is the check out panel, with a written request to the user to review is order, the order total, a trash icon with associated cart emptying function on click, a button to initiate the 3rd party Stripe payment function, and a button to return to the landing page.
+* * * the first is a series of rows for each product in the cart, with their image, name, SKU, price, quantity in the cart, and cost subtotal, and the " + ", " - ", and trash icons. These icons' functions are to increase, decrease, or remove althogheter the product from the cart.
+* * * the second component is the check out panel, with a written request to the user to review his order, the order total, a trash icon with associated cart emptying function on click, a button to initiate the 3rd party Stripe payment function, and a button to return to the landing page.
 * * Two main parts are side by side on large screen, check out to the left, stacked on smaller screen, check out at the bottom.
-* * On click, the check out button brings up small form from Stripe, where the user can enter his personal and shiipping details, along with credit card detais. if the user is authenicated, his/her email will automatically fill the relevant field in the form. This is the key for future order details retrieval. By clicking "Pay" on the form, the transaction is processed, and the user is returned to the "thank You" page, where his order number and details are displayed. Upon loading of this page, and email is fired to the user address, containing the order's details.
+* * On click, the check out button brings up small form from Stripe, where the user can enter his personal and shipping details, along with credit card detais. If the user is authenicated, his/her email will automatically fill the relevant field in the form. This is the key for future order details retrieval. By clicking "Pay" on the form, the transaction is processed, and the user is returned to the "thank You" page, where his order number and details are displayed. Upon loading of this page, an email is fired to the user's address, containing the order's details.
 
