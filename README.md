@@ -44,8 +44,8 @@ Store clerck | Access the store database | update prices and stock quantities, t
 
 ### Wireframes
 
-[Landing page](/MM Add Product page wireframe.png)
-[ Categories ](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Categories%20page.png)
+[Landing page](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/867d8d77b57f742c606c8c6a0693be8a456ecab4/home.png)
+[ Categories ](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/master/MM%20Landing%20page%20wireframe.png)
 [Contact page](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Contact%20page%20wireframe.png)
 [Contact page signed in](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20Contact%20page%20Signed%20In%20wireframe.png)
 [Product page](https://github.com/PaoloAlbanese/Mobile_Central_MP4/blob/3d8565e92d7a3f2fc7360d907123e54095d8bbf3/MM%20product%20page%20wireframe.png)
