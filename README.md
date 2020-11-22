@@ -56,7 +56,7 @@ Store clerck | Access the store database | update prices and stock quantities, t
 * [Thank You page](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+thank+you+page+wireframe.png)
 * [Orders List](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Ordres+List+wireframe.png)
 * [Add product](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Add+Product+page+wireframe.png)
-
+* [Product update successful](https://mmmp4.s3-eu-west-1.amazonaws.com/mmmp4Wireframes/MM+Operation+succesfull+page+wireframe.png)
 ---
 
 ## Features
