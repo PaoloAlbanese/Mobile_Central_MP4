@@ -22,9 +22,10 @@ Edit/Delete a Product
                 <p class="col-6"><strong>category: </strong>{{p_to_change.category}}<br><strong>price: </strong>€ {{p_to_change.price}}<br><strong>stock: </strong>{{p_to_change.stock}}<br><strong>available: </strong>{{p_to_change.available}}<br><strong>latest: </strong>{{p_to_change.latest}}<br><strong>best: </strong>{{p_to_change.best}}<br><strong>description: </strong>{{p_to_change.description}} </p>
                 <div class="mx-auto bg-white mx-auto col-6" style="display: flex;height:650px;object-fit:scale-down; border-radius: 15px!important;border: 2px solid rgb(240, 173, 78);">
                 <img class="m-auto" src="{{ p_to_change.image.url}}" alt="any uploaded picture was supposed to show here" style="height:98%;width:90%;object-fit:scale-down;">
+                
                 </div>
                 </div>
-                <a href="{% url 'add_product' %}">Edit/Delete Another Product</a>
+                <a href="{% url 'edit_product' %}">Edit/Delete Another Product</a>
                 <br>
                 
             </div>
@@ -36,7 +37,7 @@ Edit/Delete a Product
                 <br>
                 <br>
                 
-                <a href="{% url 'add_product' %}">Edit/Delete Another Product</a>
+                <a href="{% url 'edit_product' %}">Edit/Delete Another Product</a>
                 
                 <br>
                 

@@ -38,7 +38,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2,
                                 help_text="price in euro")
     image = models.ImageField(blank=False, null=False,
-                              default='mobile-2468068_1920.jpg',
+                              default='phone-2245651_1280.png',
                               help_text='minimum 235x460 px please.')
     stock = models.IntegerField()
     available = models.BooleanField(default=True)

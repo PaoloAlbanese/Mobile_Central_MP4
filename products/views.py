@@ -14,7 +14,7 @@ def _cart_id(request):
         cart = request.session.create()
     return cart
 
-
+# this view contains the search function triggered by the search box
 def all_products(request):
 
     cart_items = ()
@@ -45,7 +45,6 @@ def all_products(request):
     alphaVar = None
     alphaDir = None
     euroL = None
-    # euroR = None
     euroSortL = ""
     euroSortR = "fa-2x"
     euroDir = "asc"

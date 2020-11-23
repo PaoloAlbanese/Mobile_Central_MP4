@@ -3,11 +3,7 @@
 {% if products and new_arrivals_page or products and show_all_page %}
 <div class="row d-none d-md-block slidesContainer " style="">
         
-        <div class="col-7 m-auto mt-3 bg-white " style="display: flex;height:500px;object-fit:scale-down; background-image: radial-gradient(
-      circle at top right,
-      red,
-      rgb(243, 243, 243) 50%
-    );border-radius: 20px;">
+        <div class="col-7 m-auto mt-3 bg-white " style="display: flex;height:500px;object-fit:scale-down; background-image: radial-gradient(circle at top right, red, rgb(243, 243, 243) 50%);border-radius: 20px;">
         
                         
                         {% for product in products %}
@@ -183,15 +179,7 @@
                                         {% endif %}                            
                                     {% endif %}                              
                                 {% endfor %} 
-                                    
-                                {% for i in in_cart %}
-                                    {% if product.id == i %}
-                                        {% if cart_items.product.i == product.stock %}
-                                        <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto text-dark"><i class="fas fa-plus"></i></a>
-                                        <i class="fas fa-shopping-cart my-auto " style=""></i>
-                                        {% endif %}
-                                    {% endif %}
-                                {% endfor %}
+                                                              
 
                                 
                                 {% for i in not_in_cart %}

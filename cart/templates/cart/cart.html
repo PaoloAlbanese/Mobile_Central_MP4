@@ -24,6 +24,10 @@ Cart
 	<div class="text-center product_title">
 		Your Shopping Cart
 	</div>
+
+    <!-- A registered user may have add items placed in the cart from his last visit. 
+    Any of this items could have run out of or decreased in stock below the quantity in the cart.
+    at the first load of the cart page, a warning will alert the user to what has changed in his basket -->
     {% if warnUser %}
     <p class="text-danger bg-white col-6 mx-auto p-2  border border-danger rounded"><b>Please note, since your last visit:</b> {{ warnUser|linebreaksbr }} </p>
     {% endif %}

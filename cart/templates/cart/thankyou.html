@@ -77,8 +77,7 @@ function sendOrder(){
     var shippedTo = shipName +'~'+shipAddress+'~'+shipZip+'~'+shipCountry;
     var shippedTo = shippedTo.replace(/~/g, '<br>' );
     var ordNo  = "{{ customer_order.id }}";
-    console.log(shippedTo);
-    console.log(newList);
+    
     
 
         emailjs.init(emailJSid);

@@ -67,7 +67,7 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
     if not warnUser:
         warnUser = ""
     else:
-        del request.session['warnUser']
+        del request.session['warnUser'] # warning must appear only at first load of the page if needed.
 
     if request.user.is_authenticated:
         try:
@@ -156,13 +156,14 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
 
         except stripe.error.CardError as e:
             return False, e
-
+    this_url = request.path
     return render(request, 'cart/cart.html', dict(cart_items=cart_items,
                                                   total=total, counter=counter,
                                                   data_key=data_key,
                                                   stripe_total=stripe_total,
                                                   description=description,
-                                                  warnUser=warnUser))
+                                                  warnUser=warnUser,
+                                                  this_url=this_url))
 
 
 def cart_remove(request, product_id):
