@@ -149,7 +149,7 @@ because this process was repeating for every product on the grid, adding a produ
                                     {% if aitem.product.id == product.id and forloop.last%}
                                         {% if aitem.quantity < product.stock  %}
 
-                                            <a href="{% 'url' 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
+                                            <a href="{% '\'url'\' 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
                                             <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         {% endif %}
                                         {% if aitem.quantity == product.stock %}
