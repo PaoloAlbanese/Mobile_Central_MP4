@@ -144,8 +144,8 @@ The problem was that at each new click of " + ", the page was re-rendered and th
 This was occurring because at each rendering of the page, for each product on the grid, the html was going through each item in the cart, and if found a match, it would check the product qauntity against the product's stock in order to decide whether to render a " - " or "ban" sign next to the cart icon, so that the user could remove it from the cart with a single click, or be aware that he could not buy more of it.
 because this process was repeating for every product on the grid, adding a product to cart would make the page render again and go through the same for loop template literals tags, find the match again and add another plus sign. See code below:
 
-
-' {% for aitem in cart_items %}
+<!--- 
+{% for aitem in cart_items %}
                                     {% if aitem.product.id == product.id and forloop.last%}
                                         {% if aitem.quantity < product.stock  %}
 
@@ -175,13 +175,13 @@ because this process was repeating for every product on the grid, adding a produ
                                     {% endif %}                              
                                 {% endfor %} 
 {% endfor %}'
-
+--->
 To identify at what point of the code this was happening I changed the fontawesome icons in each if statement, to have a visual undestanding of where did things go wrong:
 ![store and +](storePlus.PNG)
 
 Finally I added another for loop with a products in the cart worked out from views.py:
-
-'for i in Product.objects.all().iterator():
+<!--- 
+for i in Product.objects.all().iterator():
             
 
             prod_id = i.id
@@ -199,6 +199,7 @@ this would make show the plus sign appear only once because it would not be caug
                                         <span class=" my-auto mx-auto"></span>
                                     {% endif %}
                                 {% endfor %}'
+--->
 
 This bug is stil alive in the test version of the site in the "showAll" view.
 
@@ -245,7 +246,7 @@ This values passed to and compared in the script, so it preserves the scroll onl
 * This project is heavily indebeted and influenced, in narly it's entirety to the illustrative project walkthrugh "Boutique Ado" on the Code Institute student portal and the Udemy course "[Build Ecommerce Website to Master Django and Python](https://www.udemy.com/course/build-ecommerce-website-to-master-django-and-python/)" by The Zero2Launch Team . The Zero2Launch Team develops high-quality programming courses around topics in mobile development including iOS, Android, Responsive Web Design and other emerging technologies.
 * The slide shows are taken with modifications from [W3School] (https://www.w3schools.com/howto/howto_js_slideshow.asp).
 * The color gradient change on hover in the hero slide show is taken with modifications from [Sarah L. Fossheim](https://fossheim.io/writing/posts/css-text-gradient/).
-* The mobile pictures sources are 
+* The mobile pictures sources are :
 * * [Carphone Warehouse](https://www.carphonewarehouse.ie/);
 * * [Amazon](https://www.amazon.com/);
 * * [Eir Mobile](https://www.eir.ie/mobile/);
@@ -262,7 +263,7 @@ I unreservedly apologize if any code portion or picture is misattribuited or not
 * I created a user with staff privileges:
 * * username: testinauser
 * * password: #V342516
-You can login with this username and view the product management functionalities. You can use it also to reduce a product stock to a low number or to 0.
+You can login with this username and view the product management functionalities. You can use it also to reduce a product stock to a low number or to 0 and visulaize how it affects the products grid and cart functionalities.
 * There is also another mock user, he is only a basic registered user:
 * * username: Cicciuser
 * * password: same as testinauser
