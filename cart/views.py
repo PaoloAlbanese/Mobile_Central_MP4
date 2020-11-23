@@ -54,10 +54,10 @@ def add_cart(request, product_id):
             cart_item.save()
 
     if 'source' in request.GET:
-
+        # to stay on the product grid if the product was added from there
         return redirect(request.META.get('HTTP_REFERER'))
     else:
-
+        # to stay on the the cart page if the product was added from there
         return redirect('cart_detail')
 
 
@@ -67,7 +67,8 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
     if not warnUser:
         warnUser = ""
     else:
-        del request.session['warnUser'] # warning must appear only at first load of the page if needed.
+        # warning must appear only at first load of the page if needed.
+        del request.session['warnUser']
 
     if request.user.is_authenticated:
         try:
@@ -169,28 +170,36 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
 def cart_remove(request, product_id):
 
     if request.user.is_authenticated:
-        product = get_object_or_404(Product, id=product_id)
-        cart_item = userCartItem.objects.get(
-            user=request.user, product=product)
-        if cart_item.quantity > 1:
-            cart_item.quantity -= 1
-            cart_item.save()
-        else:
-            cart_item.delete()
+        try:
+            product = get_object_or_404(Product, id=product_id)
+            cart_item = userCartItem.objects.get(
+                user=request.user, product=product)
+            if cart_item.quantity > 1:
+                cart_item.quantity -= 1
+                cart_item.save()
+            else:
+                cart_item.delete()
+        except:
+            pass
     else:
-        cart = Cart.objects.get(cart_id=_cart_id(request))
-        product = get_object_or_404(Product, id=product_id)
-        cart_item = CartItem.objects.get(product=product, cart=cart)
-        if cart_item.quantity > 1:
-            cart_item.quantity -= 1
-            cart_item.save()
-        else:
-            cart_item.delete()
+        try:
+            cart = Cart.objects.get(cart_id=_cart_id(request))
+            product = get_object_or_404(Product, id=product_id)
+            cart_item = CartItem.objects.get(product=product, cart=cart)
+            if cart_item.quantity > 1:
+                cart_item.quantity -= 1
+                cart_item.save()
+            else:
+                cart_item.delete()
+        except:
+            pass
 
     if 'source' in request.GET:
+        # to stay on the product grid if the product was removed from there
         return redirect(request.META.get('HTTP_REFERER'))
 
     else:
+        # to stay on the the cart page if the product was removed from there
         return redirect('cart_detail')
 
     return redirect('cart_detail')
@@ -200,14 +209,20 @@ def cart_remove_product(request, product_id):
 
     if request.user.is_authenticated:
         product = get_object_or_404(Product, id=product_id)
-        cart_item = userCartItem.objects.get(
-            user=request.user, product=product)
-        cart_item.delete()
+        try:
+            cart_item = userCartItem.objects.get(
+                user=request.user, product=product)
+            cart_item.delete()
+        except:
+            pass
     else:
         cart = Cart.objects.get(cart_id=_cart_id(request))
         product = get_object_or_404(Product, id=product_id)
-        cart_item = CartItem.objects.get(product=product, cart=cart)
-        cart_item.delete()
+        try:
+            cart_item = CartItem.objects.get(product=product, cart=cart)
+            cart_item.delete()
+        except:
+            pass
 
     return redirect('cart_detail')
 

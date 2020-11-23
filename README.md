@@ -262,7 +262,7 @@ I unreservedly apologize if any code portion or picture is misattribuited or not
 * I created a user with staff privileges:
 * * username: testinauser
 * * password: #V342516
-You can login with this username and view the product management functionalities.
+You can login with this username and view the product management functionalities. You can use it also to reduce a product stock to a low number or to 0.
 * There is also another mock user, he is only a basic registered user:
 * * username: Cicciuser
 * * password: same as testinauser
@@ -272,5 +272,4 @@ You can login with this username and view the product management functionalities
 * The Stripe modal may attempt to send a confirmation code to a mobile if it recognizes the email address. If you wait a few seconds it will let you entered the cutomer details and credit card manually. 
 * The Stripe keys are the Test ones, be sure to use credit card number 4242 4242 4242 4242, expiry date in the future.
 * Allauth was installed at the beginning of the project but then not used. I didn't uninstall it for fear of breaking something in the configurartion. 
-
 
