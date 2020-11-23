@@ -149,7 +149,7 @@ because this process was repeating for every product on the grid, adding a produ
                                     {% if aitem.product.id == product.id and forloop.last%}
                                         {% if aitem.quantity < product.stock  %}
 
-                                            <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
+                                            <a href="{% url \'add_cart\' product.id %}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
                                             <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         {% endif %}
                                         {% if aitem.quantity == product.stock %}
@@ -206,7 +206,7 @@ This bug is stil alive in the test version of the site in the "showAll" view.
 Another bug was causing the page to scroll to the top when it was re-rendered. for example, clicking on the " + " on a product from at bottom of the grod would cause the rendering to load the page at the top scrolling position, while the user may well have wanted to keep looking at the products on the same scroll level or keep scrolling further down.
 A Javascript text was implemeted to preserve the scroll position on reload and that worked fine, but it was also causing the scroll to be replicated on other pages as well. So if a user was to add to cart seveal products from the grid would and then from there move to the cart page, the cart page would load already well scrolled down, due to the lenght of the cart in item list.
 So the script to preserve scroll needed to trigger only when the referer and loading page wher the same.
-I found, modified and implemnted in views.py this useful snippet (Copyright (c) 2009 Arthur Furlan <arthur.furlan@gmail.com>), which determines if wahat was the referer url:
+I found, modified and implemnted in views.py this useful snippet (Copyright (c) 2009 Arthur Furlan <arthur.furlan@gmail.com>), which determines what was the referer url:
 
 'def get_referer_view(request, default=None):
     ''' 
