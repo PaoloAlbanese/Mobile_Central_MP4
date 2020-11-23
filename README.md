@@ -144,12 +144,12 @@ The problem was that at each new click of " + ", the page was re-rendered and th
 This was occurring because at each rendering of the page, for each product on the grid, the html was going through each item in the cart, and if found a match, it would check the product qauntity against the product's stock in order to decide whether to render a " - " or "ban" sign next to the cart icon, so that the user could remove it from the cart with a single click, or be aware that he could not buy more of it.
 because this process was repeating for every product on the grid, adding a product to cart would make the page render again and go through the same for loop template literals tags, find the match again and add another plus sign. See code below:
 
-<!--- 
+
 {% for aitem in cart_items %}
                                     {% if aitem.product.id == product.id and forloop.last%}
                                         {% if aitem.quantity < product.stock  %}
 
-                                            <a href="{% url \'add_cart\' product.id %}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
+                                            <a href="{% url `\``add_cart`\`` product.id %}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
                                             <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         {% endif %}
                                         {% if aitem.quantity == product.stock %}
@@ -175,12 +175,12 @@ because this process was repeating for every product on the grid, adding a produ
                                     {% endif %}                              
                                 {% endfor %} 
 {% endfor %}'
---->
+
 To identify at what point of the code this was happening I changed the fontawesome icons in each if statement, to have a visual undestanding of where did things go wrong:
 ![store and +](storePlus.PNG)
 
 Finally I added another for loop with a products in the cart worked out from views.py:
-<!--- 
+
 for i in Product.objects.all().iterator():
             
 
@@ -199,7 +199,7 @@ this would make show the plus sign appear only once because it would not be caug
                                         <span class=" my-auto mx-auto"></span>
                                     {% endif %}
                                 {% endfor %}'
---->
+
 
 This bug is stil alive in the test version of the site in the "showAll" view.
 
