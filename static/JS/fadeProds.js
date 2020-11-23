@@ -1,6 +1,6 @@
 var cbody = document.getElementById("contenuto").offsetHeight;
 var cviewHeight = window.innerHeight; 
-cviewHeight = 1.4*cviewHeight; 
+cviewHeight = 1.8*cviewHeight; 
 
 var elmnt = document.getElementsByClassName('pup');
 var opa =1

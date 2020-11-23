@@ -141,12 +141,14 @@ Please note: on both the test and the final website there is a marquee within th
 Several pages display a products grid. Each product on the grid has a " + " icon that functions as an "add to cart" button. The purpose of it is to give the customer the convenience of adding a product to cart from the grid, without having to open the products page first. On click, the " + " invokes the same view that is triggered by the "Add to cart" link in the Products page.
 The problem was that at each new click of " + ", the page was re-rendered and the another " + " and cart icon was appearing beside the first:
 ![double +](dblPlus.PNG)
-This was occurring because at each rendering of the page, for each product on the grid, the html was going through each item in the cart, and if found a match, it would check the product qauntity against the product's stock in order to decide whether to render a " - " or "ban" sign next to the cart icon, so that the user could remove it from the cart with a single click, or be aware that he could not buy more of it.
-because this process was repeating for every product on the grid, adding a product to cart would make the page render again and go through the same for loop template literals tags, find the match again and add another plus sign. See code below:
+This was occurring because for each product on the grid, I had created for loops that where iterating through items in the cart to see if the grid product was either present or absent it.
+The purpose was to search for a match and if found, to check the product quantity against the product's stock in order to decide whether to render a " - " or "ban" sign next to the cart icon, so that the user could remove it from the cart with a single click, or be aware that he could not buy more of it.
+But at each addition to the cart the page was refreshing and the products the HTML was going trough the loops again, and the items that were added to the cart first were showing extra + at each run. 
 
+(please forgive the ''|escape filters, github wouldn't accept the MD file without them, because he mixes up the template tags with the MD liquid tags)
 
 '{% for aitem in cart_items %}
-                                    {% if aitem.product.id == product.id and forloop.last%}
+                                    {% if aitem.product.id == product.id %}
                                         {% if aitem.quantity < product.stock  %}
 
                                             <a href {'% 'url' 'add_cart' product.id % '|escape}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
@@ -160,35 +162,38 @@ because this process was repeating for every product on the grid, adding a produ
                                 {% endfor %}            
                                     
 
-                                {% for aitem in cart_items %}
-                                    {% if aitem.product.id == product.id and not forloop.last %}
-                                        
-                                        {% if aitem.quantity == product.stock %}
-                                            <i class="fas fa-ban text-warning my-auto my-auto mx-auto" ></i>
+                                {'% for aitem in cart_items %'|escape}
+                                    {'% if not aitem.product.id == product.id %'|escape}
+                                        {'% if aitem.quantity < product.stock  %'|escape}
+                                            <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
                                             <i class="fas fa-shopping-cart my-auto " style=""></i>
-                                        {% endif %}                            
-
-                                        {% if aitem.product.id == product.id and aitem.quantity < product.stock  %}
-                                            <a href="{'% url 'add_cart' product.id %'|escape}?source=ind" class=" my-auto mx-auto text-warning" onclick="SameScroll()"><i class="fas fa-store" style=""></i></a>
-                                            <i class="fas fa-shopping-cart my-auto " style=""></i>
-                                        {% endif %}                            
-                                    {% endif %}                              
-                                {'% endfor %'|escape} 
+                                        {'% endif %'|escape}
+                                        {'% if aitem.quantity == product.stock %'|escape}
+                                            <i class="fas fa-ban my-auto my-auto mx-auto text-danger" style=""></i>
+                                            <i class="fas fa-mobile my-auto mx-auto" style=""></i>
+                                        {% endif %}    
+                                    {% endif %}
+                                {% endfor %}
 {% endfor %}'
 
 To identify at what point of the code this was happening I changed the fontawesome icons in each if statement, to have a visual undestanding of where did things go wrong:
 ![store and +](storePlus.PNG)
+So I noticed it kept adding icon because each item was either falling in on or the other loop, and both were increasing iterations as the user was adding to the cart.
 
-Finally I added another for loop with a products in the cart worked out from views.py:
+Finally I added replaced the last inner for loop with another one simply iterating through the products absent from the cart, worked out from views.py:
 
-for i in Product.objects.all().iterator():
+if cart_items:
+        for i in cart_items:
+            in_cart.append(i.product.id)
+        
+
+        for i in Product.objects.all().iterator():
             
-
             prod_id = i.id
             if prod_id not in in_cart:
-                not_in_cart.append(prod_id)'
+                not_in_cart.append(prod_id)
 
-this would make show the plus sign appear only once because it would not be caught in the and the previous if statements simultaneously.
+this would make show the plus sign appear only once because the items not the cart could only decrease, if anything.
 
 '{'% for i in not_in_cart %'|escape}
                                     {% if product.id == i %}

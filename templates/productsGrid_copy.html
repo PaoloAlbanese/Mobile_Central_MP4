@@ -152,7 +152,7 @@
                             <span class="mx-auto my-auto" style="display: flex;justify-content:space-between;width:40%;border: 1px solid rgb(240, 173, 78); border-radius: 20px;height:91%;background-color:#f0f0f0;">
 
                                 {% for aitem in cart_items %}
-                                    {% if aitem.product.id == product.id %}
+                                    { if aitem.product.id == product.id and forloop.last%}
                                         {% if aitem.quantity < product.stock  %}
                                             <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto " ><i class="fas fa-plus"></i></a>
                                             <i class="fas fa-shopping-cart my-auto " style=""></i>
@@ -165,6 +165,23 @@
                                 {% endfor %}            
                                     
 
+                                {% for aitem in cart_items %}
+                                    {% if aitem.product.id == product.id and not forloop.last %}
+                                        
+                                        {% if aitem.quantity == product.stock %}
+                                            <i class="fas fa-ban text-danger my-auto my-auto mx-auto" ></i>
+                                            <i class="fas fa-shopping-cart my-auto " style=""></i>
+                                        {% endif %}                            
+
+                                        {% if aitem.product.id == product.id and aitem.quantity < product.stock  %}
+                                            <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto"><i class="fas fa-plus"></i></a>
+                                            <i class="fas fa-shopping-cart my-auto " style=""></i>
+                                        {% endif %}                            
+                                    {% endif %}                              
+                                {% endfor %} 
+                                                              
+
+                                
                                 {% for i in not_in_cart %}
                                     {% if product.id == i %}
                                         <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto"><i class="fas fa-plus"></i></a>
