@@ -145,11 +145,11 @@ This was occurring because at each rendering of the page, for each product on th
 because this process was repeating for every product on the grid, adding a product to cart would make the page render again and go through the same for loop template literals tags, find the match again and add another plus sign. See code below:
 
 
-{% for aitem in cart_items %}
+'{% for aitem in cart_items %}
                                     {% if aitem.product.id == product.id and forloop.last%}
                                         {% if aitem.quantity < product.stock  %}
 
-                                            <a href``{%`` `url` 'add_cart' product.id ``%}``?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
+                                            <a href {% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
                                             <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         {% endif %}
                                         {% if aitem.quantity == product.stock %}
