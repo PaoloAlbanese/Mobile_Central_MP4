@@ -169,7 +169,7 @@ because this process was repeating for every product on the grid, adding a produ
                                         {% endif %}                            
 
                                         {% if aitem.product.id == product.id and aitem.quantity < product.stock  %}
-                                            <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto text-warning" onclick="SameScroll()"><i class="fas fa-store" style=""></i></a>
+                                            <a href="{'% url 'add_cart' product.id %'|escape}?source=ind" class=" my-auto mx-auto text-warning" onclick="SameScroll()"><i class="fas fa-store" style=""></i></a>
                                             <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         {% endif %}                            
                                     {% endif %}                              
@@ -193,7 +193,7 @@ this would make show the plus sign appear only once because it would not be caug
 '{% for i in not_in_cart %}
                                     {% if product.id == i %}
 
-                                        <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto " ><i class="fas fa-plus" style=""></i></a>
+                                        <a href="{'% url 'add_cart' product.id %'|escape}?source=ind" class=" my-auto mx-auto " ><i class="fas fa-plus" style=""></i></a>
                                         
                                         <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         <span class=" my-auto mx-auto"></span>
