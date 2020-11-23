@@ -190,7 +190,7 @@ for i in Product.objects.all().iterator():
 
 this would make show the plus sign appear only once because it would not be caught in the and the previous if statements simultaneously.
 
-'{% for i in not_in_cart %}
+'{'% for i in not_in_cart %'|escape}
                                     {% if product.id == i %}
 
                                         <a href="{'% url 'add_cart' product.id %'|escape}?source=ind" class=" my-auto mx-auto " ><i class="fas fa-plus" style=""></i></a>
