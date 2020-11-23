@@ -173,7 +173,7 @@ because this process was repeating for every product on the grid, adding a produ
                                             <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         {% endif %}                            
                                     {% endif %}                              
-                                {% endfor %} 
+                                {'% endfor %'|escape} 
 {% endfor %}'
 
 To identify at what point of the code this was happening I changed the fontawesome icons in each if statement, to have a visual undestanding of where did things go wrong:
@@ -198,7 +198,7 @@ this would make show the plus sign appear only once because it would not be caug
                                         <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         <span class=" my-auto mx-auto"></span>
                                     {% endif %}
-                                {% endfor %}'
+                                {'% endfor %'|escape}'
 
 
 This bug is stil alive in the test version of the site in the "showAll" view.
