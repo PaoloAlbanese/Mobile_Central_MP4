@@ -173,7 +173,7 @@ But at each addition to the cart the page was refreshing and the products the HT
                                             <i class="fas fa-mobile my-auto mx-auto" style=""></i>
                                         {'% endif %'|escape}    
                                     {'% endif %'|escape}
-                                {% endfor %}
+                                {'% endfor %'|escape}
 {% endfor %}'
 
 To identify at what point of the code this was happening I changed the fontawesome icons in each if statement, to have a visual undestanding of where did things go wrong:
