@@ -171,8 +171,8 @@ But at each addition to the cart the page was refreshing and the products the HT
                                         {'% if aitem.quantity == product.stock %'|escape}
                                             <i class="fas fa-ban my-auto my-auto mx-auto text-danger" style=""></i>
                                             <i class="fas fa-mobile my-auto mx-auto" style=""></i>
-                                        {% endif %}    
-                                    {% endif %}
+                                        {'% endif %'|escape}    
+                                    {'% endif %'|escape}
                                 {% endfor %}
 {% endfor %}'
 
