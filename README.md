@@ -165,7 +165,7 @@ But at each addition to the cart the page was refreshing and the products the HT
                                 {'% for aitem in cart_items %'|escape}
                                     {'% if not aitem.product.id == product.id %'|escape}
                                         {'% if aitem.quantity < product.stock  %'|escape}
-                                            <a href="{% url 'add_cart' product.id %}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
+                                            <a href="{'% url 'add_cart' product.id %'|escape}?source=ind" class=" my-auto mx-auto " onclick="SameScroll()"><i class="fas fa-plus" style=""></i></a>
                                             <i class="fas fa-shopping-cart my-auto " style=""></i>
                                         {'% endif %'|escape}
                                         {'% if aitem.quantity == product.stock %'|escape}
