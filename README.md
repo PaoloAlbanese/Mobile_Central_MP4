@@ -91,6 +91,8 @@ Store clerck | Access the store database | update prices and stock quantities, t
 * * * the first is a series of rows for each product in the cart, with their image, name, SKU, price, quantity in the cart, and cost subtotal, and the " + ", " - ", and trash icons. These icons' functions are to increase, decrease, or remove althogheter the product from the cart.
 * * * the second component is the check out panel, with a written request to the user to review his order, the order total, a trash icon with associated cart emptying function on click, a button to initiate the 3rd party Stripe payment function, and a button to return to the landing page.
 * * Two main parts are side by side on large screen, check out to the left, stacked on smaller screen, check out at the bottom.
+* * Registered users will have items in their cart persisted between logged-in session, pending stock availabilty.
+* * If the user is registerd, any item added to the cart just before logging in will persist in the cart upon login, and added to any item that was already in the cart form their last logged in session.  
 * * On click, the check out button brings up a small form from Stripe, where the user can enter his personal and shipping details, along with credit card detais. If the user is authenicated, his/her email will automatically fill the relevant field in the form. This is the key for future order details retrieval. By clicking "Pay" on the form, the transaction is processed, and the user is returned to the "thank You" page, where his order number and details are displayed. Upon loading of this page, an email is fired to the user's address, containing the order's details.
 * The Contact form. A form accessed by the navbar that allows the user to send messages to the store owner.
 * * If the form is accessed by a registered user, his/her name and email fields do not required.
@@ -178,7 +180,8 @@ But at each addition to the cart the page was refreshing and the products the HT
 
 To identify at what point of the code this was happening I changed the fontawesome icons in each if statement, to have a visual undestanding of where did things go wrong:
 ![store and +](storePlus.PNG)
-So I noticed it kept adding icon because each item was either falling in on or the other loop, and both were increasing iterations as the user was adding to the cart.
+
+So I noticed it kept adding icon because item was either falling in on or the other loop, and both loops were increasing in iterations as the user was adding to the cart.
 
 Finally I added replaced the last inner for loop with another one simply iterating through the products absent from the cart, worked out from views.py:
 
@@ -263,7 +266,7 @@ This values passed to and compared in the script, so it preserves the scroll onl
 
 I unreservedly apologize if any code portion or picture is misattribuited or not attribuited to their authors. It is a genuine human error. I am still learning and this is the most intense project I've done so far, please try to understand.
 
-## Notes to the project's assesors:
+## Notes to the project's assessors:
 
 * I created a user with staff privileges:
 * * username: testinauser

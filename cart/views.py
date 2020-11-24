@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 import stripe
-
+from home.views import get_referer_view
 
 # We're in cart views.
 
@@ -12,6 +12,8 @@ import stripe
 def cart(request):
     return render(request, 'cart/cart.html')
 
+
+# access the cart in the session or create it if it doesn't exist
 
 def _cart_id(request):
     cart = request.session.session_key
@@ -53,16 +55,17 @@ def add_cart(request, product_id):
                 product=product, quantity=1, cart=cart)
             cart_item.save()
 
-    if 'source' in request.GET:
+    if 'source' in request.GET: # if 'source' is in the parameters at all, the reqeust comes from the grid
         # to stay on the product grid if the product was added from there
         return redirect(request.META.get('HTTP_REFERER'))
     else:
-        # to stay on the the cart page if the product was added from there
+        # if the request comes from the cart link or from the cart page, go to or stay on the cart page
         return redirect('cart_detail')
 
 
 def cart_detail(request, total=0, counter=0, cart_items=None):
 
+    # display warning to user in case items in the cart have changed since their last visit
     warnUser = request.session.get('warnUser')
     if not warnUser:
         warnUser = ""
@@ -77,7 +80,7 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
                 total += (cart_item.product.price*cart_item.quantity)
                 counter += cart_item.quantity
         except ObjectDoesNotExist:
-            print('fail in logged user cart details')
+            pass
     else:
         try:
             cart = Cart.objects.get(cart_id=_cart_id(request))
@@ -86,7 +89,9 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
                 total += (cart_item.product.price*cart_item.quantity)
                 counter += cart_item.quantity
         except ObjectDoesNotExist:
-            print('fail in anonymous user cart details')
+            pass
+
+    # Stripe data handling (from Zero2Launch)
 
     stripe.api_key = settings.STRIPE_SECRET_KEY
     stripe_total = int(total*100)
@@ -114,7 +119,7 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
                 amount=stripe_total, currency='eur',
                 description=description, customer=customer.id)
 
-            # Create the Order
+            # Create the Order (from Zero2Launch)
 
             try:
                 order_details = Order.objects.create(
@@ -158,13 +163,15 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
         except stripe.error.CardError as e:
             return False, e
     this_url = request.path
+    referer_view = get_referer_view(request)
     return render(request, 'cart/cart.html', dict(cart_items=cart_items,
                                                   total=total, counter=counter,
                                                   data_key=data_key,
                                                   stripe_total=stripe_total,
                                                   description=description,
                                                   warnUser=warnUser,
-                                                  this_url=this_url))
+                                                  this_url=this_url,
+                                                  referer_view=referer_view))
 
 
 def cart_remove(request, product_id):
@@ -194,12 +201,12 @@ def cart_remove(request, product_id):
         except:
             pass
 
-    if 'source' in request.GET:
+    if 'source' in request.GET: # if 'source' is in the parameters at all, the reqeust comes from the grid
         # to stay on the product grid if the product was removed from there
         return redirect(request.META.get('HTTP_REFERER'))
 
     else:
-        # to stay on the the cart page if the product was removed from there
+       # if the request comes from the cart link or from the cart page, go to or stay on the cart page
         return redirect('cart_detail')
 
     return redirect('cart_detail')
