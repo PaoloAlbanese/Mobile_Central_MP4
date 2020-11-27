@@ -1,3 +1,4 @@
+// taken from Nick Ciliak's code to fade elements as the page scrolls
 var cbody = document.getElementById("contenuto").offsetHeight;
 var cviewHeight = window.innerHeight; 
 cviewHeight = 1.8*cviewHeight; 
@@ -6,6 +7,7 @@ var elmnt = document.getElementsByClassName('pup');
 var opa =1
 var pup = document.getElementsByClassName('pup');
 
+// if the body's height is 1.8 times the viewport, start fading the product (aka 'pup') as it slides under the sorting buttons (aka 'grad2') 
 if (cbody > cviewHeight) {
 $(window).scroll(function(){
     

@@ -1,12 +1,19 @@
 from django import forms
 from products.models import Product, Manufactorer, CaroPics
 from django.forms import ModelForm
+from django.core.exceptions import ValidationError
 
 # We're in prdMgt forms.
 
 
 class AddProductForm(ModelForm):
     prefix = 'addproduct'
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        if Product.objects.filter(name=name).exists():
+            raise ValidationError("Product already exists")
+        return name
 
     class Meta:
         model = Product

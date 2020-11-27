@@ -14,7 +14,8 @@ window.addEventListener("resize", toggleArrow);
         
         }
       }
-        
+      
+    // from Code Institute, combined with Nick Ciliak's (modified) code to fade the products back in
       function winTop(){
           var pup = document.getElementsByClassName('pup');
         for (var i = 0; i < pup.length; i++) {

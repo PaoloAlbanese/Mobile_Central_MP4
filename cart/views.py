@@ -65,7 +65,8 @@ def add_cart(request, product_id):
 
 def cart_detail(request, total=0, counter=0, cart_items=None):
 
-    # display warning to user in case items in the cart have changed since their last visit
+    # display warning to user in case items in the cart have changed
+    # since their last visit
     warnUser = request.session.get('warnUser')
     if not warnUser:
         warnUser = ""

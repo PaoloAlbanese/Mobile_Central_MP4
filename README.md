@@ -4,7 +4,7 @@
 
 An online shop's portal specilaized in mobile phones.  
 The main typologies of the products on sale are Smartphones and old-fashioned flip phones/lcd display phones, collectively grouped under the nostalgic header "GSM".
-Users can avail of navigation menu links to browse the site, search products, look up individual product descriptions, post comments, read and (as registered users) write products reviews, contact the store owner via the contact form.
+Users can avail of navigation menu links to browse the site, search products, look up individual product descriptions, post comments, contact the store owner via the contact form, read and (as registered users) write products reviews.
 The Website offers users the option of becoming registred users and thus being able of persisting their carts between visits, post reviews, and view/print their orders history.
 It is not necessary to be a registred user to place an order.
 
@@ -22,22 +22,22 @@ The goals of the website users are:
 
 ## UX
 
-There types of clientele sought are two : 
+The types of clientele sought are two : 
 
 * enthusiast mobiles users who are always up to date with latest technologies and fashonable items on the market, these are prepared to spend a substantial amount of money for a well rounded product.
 * common mobiles users who see the product more as a neccessity than a fancy thing to have; they will settle for a product that meet their minimal expectations with the least inpact on their finances. 
 
-The website addresses the needs of both with a division in two main categories amd with a clear display of products from each in the landing page. Product descriptions and reviews are available to allow customers to make an informed decision. 
-Customers can make specific queries via contact form.
+The website addresses the needs of both with a division in two main categories amd with a clear display of products from each from the landing page. Product descriptions and reviews are available to allow customers to make an informed decision. 
+Customers can make specific queries via the contact form.
 
 ### User Stories
 
 As a .. | I want to .. | So I can ..
  --- | --- | --- 
-New customer | Immediately learn the nature of the business | Determine quickly if the product I seek can be found in the store
-Potential customer | easily navigate through the site | Find quickly the desired product/related information
-Commited customer | easily and clearly be guided through the payment process | Finalize the transaction and secure the desired product
-Potential customer | Avail of enough, to-the-point information on the merchandise | Make an informed decision on whether or not I should purchase a product
+New customer | Immediately identify the nature of the business | Determine quickly if the product I seek can be found in the store
+Potential customer | Easily navigate through the site | Find quickly the desired product/related information
+Commited customer |Eeasily and clearly be guided through the payment process | Finalize the transaction and secure the desired product
+Potential customer | Avail of to-the-point information on the merchandise | Make an informed decision on whether or not I should purchase a product
 New/Returning Customer | Send specific queries to the store owner | Obtain more information than what found on the website/Leave feedback on my experience with the site
 Registred User | Access my order history | Keep track of my expenses or resolve disputes
 Registred User | Have my cart persited between visits | Do without having to restart the entire process when I make a resolute decision to buy
@@ -62,10 +62,10 @@ Store clerck | Access the store database | update prices and stock quantities, t
 
 ## Features
 
-* The navigation bar, present at the top of all pages, includes: 
-* * A Logo, in the shape of a Smartphone, is situated at the top left of the screen, the first item on the Navbar from the left. shows on all pages. On click, it redirects to a display of all the products on sale.
+* The navigation bar, present at the top of every page, includes: 
+* * A Logo, in the shape of a Smartphone, situated at the top left of the screen, the first item on the Navbar from the left. Shows on all pages. On click, it redirects to a display of all the products on sale.
 * * The Business' name "Mobile Central" second from the left on large screens, dead in the middle on small screens. On click, it brings back to the landing page, as a "Home" button would.
-* * A collapsible dropdown menu containing links to  other sections of the website, submenus, and a search box. On small screens it shows collapsed as an hamburger button, while on large screens the first level items of the dropdown menu are displayed horizontally along the navbar.
+* * A collapsible dropdown menu containing links to other sections of the website, submenus, and a search box. On small screens it shows collapsed as an hamburger button, while on large screens the first level items of the dropdown menu are displayed horizontally along the navbar.
 * The Landing or "Home" page. 
 * * It displays all products that have been marked by the store with the caption "New Arrival!". On this page, however, the caption does not appear on each product, to avoid a redundant and unsightly repetition.
 * * The user is rather informed that these are the latest arrivals by a red header above the products' grid; it reads "Check Out the Latest Arrivals!". 
@@ -85,17 +85,17 @@ Store clerck | Access the store database | update prices and stock quantities, t
 * * Accessed by clicking on the product's image from the products grid on each of the above pages.
 * * Contains a page with the products image, description, price, relevant reviews, and:
 * * an "Add to cart" link that, on click, simultaneously adds the product to and opens up the cart page.
-* The cart page.
+* The Cart page.
 * * Accessed by the "Add to cart" link on the product page or by clicking on the cart icon on the navbar, which appears after a product is placed in the cart.
 * * Composed of two main section,
 * * * the first is a series of rows for each product in the cart, with their image, name, SKU, price, quantity in the cart, and cost subtotal, and the " + ", " - ", and trash icons. These icons' functions are to increase, decrease, or remove althogheter the product from the cart.
 * * * the second component is the check out panel, with a written request to the user to review his order, the order total, a trash icon with associated cart emptying function on click, a button to initiate the 3rd party Stripe payment function, and a button to return to the landing page.
-* * Two main parts are side by side on large screen, check out to the left, stacked on smaller screen, check out at the bottom.
+* * The two main parts are side by side on large screen, check out to the right, stacked on smaller screen, check out at the bottom.
 * * Registered users will have items in their cart persisted between logged-in session, pending stock availabilty.
-* * If the user is registerd, any item added to the cart just before logging in will persist in the cart upon login, and added to any item that was already in the cart form their last logged in session.  
-* * On click, the check out button brings up a small form from Stripe, where the user can enter his personal and shipping details, along with credit card detais. If the user is authenicated, his/her email will automatically fill the relevant field in the form. This is the key for future order details retrieval. By clicking "Pay" on the form, the transaction is processed, and the user is returned to the "thank You" page, where his order number and details are displayed. Upon loading of this page, an email is fired to the user's address, containing the order's details.
-* The Contact form. A form accessed by the navbar that allows the user to send messages to the store owner.
-* * If the form is accessed by a registered user, his/her name and email fields do not required.
+* * If the user is registerd, any item added to the cart just before logging in will persist in the cart upon login, and added to any item that was already in the cart from their last logged in session.  
+* * On click, the check out button brings up a small form from Stripe, where the user can enter his/her personal and shipping details, along with their credit card detais. If the user is authenicated, his/her email will automatically fill the relevant field in the form. This is the key for future order details retrieval. By clicking "Pay" on the form, the transaction is processed, and the user is returned to the "thank You" page, where his/her order number and details are displayed. Upon loading of this page, an email is fired to the user's address, containing the order's details.
+* The Contact Form. A form accessed by the navbar that allows the user to send messages to the store owner.
+* * If the form is accessed by a registered user, his/her name and email fields are not required.
 * * Upon submission, the page refreshes to confirm receipt of the message and to display the message content. An email is fired at the user's provided or registered address at this point, again confirming successful subsmission.
 * The Sign In form. 
 * * A form accessed by the navbar that allows registered users to login into their account. 
@@ -104,16 +104,16 @@ Store clerck | Access the store database | update prices and stock quantities, t
 * * The first half contains an invitation to unregistred users to start the registration proceess by clicking on the button provided. The second half contains the user name and password form fields, along with the login button.
 * The Registration form.
 * * Accessed via the link on the Sign In page, it contains a form where the perspective user can enter his personal details and set a user name and password.
-* * Upon submission via the button provided, the page refreshes to a registration confirmation statement and a link to the login page. An email is fired at the user's newly registered address at this point, again confirming successful subsmission.
-* Order history.
+* * Upon submission via the button provided, the page refreshes to a registration confirmation statement and a link to the login page. An email is fired at the user's newly registered address at this point, again confirming successful enrollment.
+* Order History.
 * * Accessed by the dropdown menu link under the Welcome to the User words in the navbar, which shows only to logged in users.
 * * The link opens up to a summary table of the past orders made by the user, showing the orders' ids, creation dates, amounts paid, orders' status, and links to the complete details of each order in form table.
-* * On click, the link to each orders details opens up a page with the table containing all the orders details, including orcer number, items purchased and shipping details. This page features a print button.
-* * The list does not collapse but can be scrolled horizontally on small screens.
+* * On click, these link open up a page with the table containing all the orders details, including order number, items purchased and shipping details. This page features a "Print" button.
+* * The list does not wrap but can be scrolled horizontally on small screens.
 * Product Management.
 * * If the logged in user has staff status, a dropdown menu, "Product Management" will show in red on the navbar.
 * * The dropdown menu consists of 5 pages, each containing a form to either create a product, update/delete a product, add a side picture (that is, any picture other than the main for the product), delete a side a picture, add a brand.
-* * A valid form will return on submission, a page confirming to the user the success of the operation.
+* * A valid form will return, on submission, a page confirming to the user the success of the operation.
 
 ## Technologies used
 * Django framework (python)
@@ -125,7 +125,7 @@ Store clerck | Access the store database | update prices and stock quantities, t
 ## Cloning this project from Github to your Gitpod account.
 This project's repository can be found [here](https://github.com/PaoloAlbanese/Mobile_Central_MP4)(not to be confused with the [test version](https://github.com/PaoloAlbanese/MS4-Project) of the website).
 Please access the repository on a Chrome browsers complete with [gitpod extension](https://www.gitpod.io/docs/browser-extension/).
-By clicking the green "Gitpod" button in the top right corner of the repository, you will to create a new workspace from the repository's code in your enviroment.
+By clicking the green "Gitpod" button in the top right corner of the repository, you will create a new workspace from the repository's code in your enviroment.
 
 The live deployed webiste can be found on [Heroku](https://mm-mp4.herokuapp.com/).
 
@@ -136,16 +136,16 @@ This test project consist of one main app. When I decided to build the final ver
 I copied and trimmed of commented out code each the part of the unified test website on to the relevant app in final version workspace, running the server after each app was complete and reading any debug error that may arise.
 In the initail prototype website build up, I used the website in any way a perspective customer, registered user or staff member would, taking note of what I would like to see changed and trying to implent it.
 In the final version workspace I retested the webiste as before each time I added a new part from the prototype website.
-Please note: on both the test and the final website there is a marquee within the navbar alerting visitors that the website is on TEST and purchases do not actually take place. This is 
+Please note: on both the test and the final website there is a marquee within the navbar alerting visitors that the website is on TEST and purchases do not actually take place.
 
 ### Main bugs found
 
-Several pages display a products grid. Each product on the grid has a " + " icon that functions as an "add to cart" button. The purpose of it is to give the customer the convenience of adding a product to cart from the grid, without having to open the products page first. On click, the " + " invokes the same view that is triggered by the "Add to cart" link in the Products page.
+Several pages display a products grid. Each product on the grid has a " + " icon that functions as an "add to cart" button. The purpose of it is to give the customer the convenience of adding a product to the cart stright from the grid, without having to open the products page first. On click, the " + " invokes the same view that is triggered by the "Add to cart" link in the Products page.
 The problem was that at each new click of " + ", the page was re-rendered and the another " + " and cart icon was appearing beside the first:
 ![double +](dblPlus.PNG)
-This was occurring because for each product on the grid, I had created for loops that where iterating through items in the cart to see if the grid product was either present or absent it.
+This was occurring because for each product on the grid, I had created for loops that where iterating through items in the cart to see if the grid product was either present in the cart or absent from it.
 The purpose was to search for a match and if found, to check the product quantity against the product's stock in order to decide whether to render a " - " or "ban" sign next to the cart icon, so that the user could remove it from the cart with a single click, or be aware that he could not buy more of it.
-But at each addition to the cart the page was refreshing and the products the HTML was going trough the loops again, and the items that were added to the cart first were showing extra + at each run. 
+But at each addition to the cart the page was refreshing and the products the HTML was going trough the loops again, and the items that were added to the cart first were showing an extra "+ cart" at each run. 
 
 (please forgive the ''|escape filters, github wouldn't accept the MD file without them, because he mixes up the template tags with the MD liquid tags)
 
@@ -181,9 +181,9 @@ But at each addition to the cart the page was refreshing and the products the HT
 To identify at what point of the code this was happening I changed the fontawesome icons in each if statement, to have a visual undestanding of where did things go wrong:
 ![store and +](storePlus.PNG)
 
-So I noticed it kept adding icon because item was either falling in on or the other loop, and both loops were increasing in iterations as the user was adding to the cart.
+So I noticed it kept adding icon because each item was either falling in on or the other loop, and both loops were increasing in iterations as the user was adding to the cart.
 
-Finally I added replaced the last inner for loop with another one simply iterating through the products absent from the cart, worked out from views.py:
+Finally I replaced the last inner for loop with another one simply iterating through the products absent from the cart, worked out from views.py:
 
 if cart_items:
         for i in cart_items:
@@ -196,7 +196,7 @@ if cart_items:
             if prod_id not in in_cart:
                 not_in_cart.append(prod_id)
 
-this would make show the plus sign appear only once because the items not the cart could only decrease, if anything.
+this would make show the plus sign appear only once because the items not in the cart could only decrease, if anything.
 
 '{'% for i in not_in_cart %'|escape}
                                     {% if product.id == i %}
@@ -209,12 +209,12 @@ this would make show the plus sign appear only once because the items not the ca
                                 {'% endfor %'|escape}'
 
 
-This bug is stil alive in the test version of the site in the "showAll" view.
+This bug is stil alive, for demostration, in the test version of the site in the "showAll" view.
 
-Another bug was causing the page to scroll to the top when it was re-rendered. for example, clicking on the " + " on a product from at bottom of the grod would cause the rendering to load the page at the top scrolling position, while the user may well have wanted to keep looking at the products on the same scroll level or keep scrolling further down.
-A Javascript text was implemeted to preserve the scroll position on reload and that worked fine, but it was also causing the scroll to be replicated on other pages as well. So if a user was to add to cart seveal products from the grid would and then from there move to the cart page, the cart page would load already well scrolled down, due to the lenght of the cart in item list.
-So the script to preserve scroll needed to trigger only when the referer and loading page wher the same.
-I found, modified and implemnted in views.py this useful snippet (Copyright (c) 2009 Arthur Furlan <arthur.furlan@gmail.com>), which determines what was the referer url:
+Another bug was causing the page to scroll to the top whenever it was re-rendered. for example, clicking on the " + " on a product at bottom of the grod would cause the rendering to load the page at the top scrolling position, while the user may well have wanted to keep looking at the products on the same scroll level or keep scrolling further down.
+A Javascript text was implemeted to preserve the scroll position on reload and that worked fine, but it was also causing the scroll to be replicated on other pages as well. So if a user was to add to cart several products from the grid and then from there move to the cart page, the cart page would load already well scrolled down, due to the lenght of the cart in item list.
+So the script to preserve scroll needed to trigger only when the referer and loading page were the same.
+I found, modified and implemnted in views.py this useful snippet (Copyright (c) 2009 Arthur Furlan <arthur.furlan@gmail.com>), which determines what the referer url was:
 
 'def get_referer_view(request, default=None):
     ''' 
@@ -246,21 +246,31 @@ the result is compared to the current url sourced in the current view:
 
 ' this_url = request.path'
 
-This values passed to and compared in the script, so it preserves the scroll only if they are identical. 
+These values are passed to and compared in the script, so it preserves the scroll only if they are identical. 
+
+'
+var this_url = "{{'this_url'|escape}}";
+var referer_view ="{{'referer_view'|escape}}";
+
+...
+
+if (this_url == referer_view){...
+'
+
 
 
 ## Acknowledegements
 
-* This project is heavily indebeted and influenced, in narly it's entirety to the illustrative project walkthrugh "Boutique Ado" on the Code Institute student portal and the Udemy course "[Build Ecommerce Website to Master Django and Python](https://www.udemy.com/course/build-ecommerce-website-to-master-django-and-python/)" by The Zero2Launch Team . The Zero2Launch Team develops high-quality programming courses around topics in mobile development including iOS, Android, Responsive Web Design and other emerging technologies.
-* The slide shows are taken with modifications from [W3School] (https://www.w3schools.com/howto/howto_js_slideshow.asp).
+* This project is heavily indebeted and influenced, in nearly it's entirety to the illustrative project walkthrough "Boutique Ado" on the Code Institute student portal and more so to the Udemy course "[Build Ecommerce Website to Master Django and Python](https://www.udemy.com/course/build-ecommerce-website-to-master-django-and-python/)" by The Zero2Launch Team . The Zero2Launch Team develops high-quality programming courses around topics in mobile development including iOS, Android, Responsive Web Design and other emerging technologies.
+* The slide shows are taken with modifications from [W3School](https://www.w3schools.com/howto/howto_js_slideshow.asp).
 * The color gradient change on hover in the hero slide show is taken with modifications from [Sarah L. Fossheim](https://fossheim.io/writing/posts/css-text-gradient/).
 * The mobile pictures sources are :
 * * [Carphone Warehouse](https://www.carphonewarehouse.ie/);
 * * [Amazon](https://www.amazon.com/);
 * * [Eir Mobile](https://www.eir.ie/mobile/);
-* Several icons are sourced from Fontawsome;
+* Several icons are sourced from Fontawesome;
 * The default phone image is sourced from [Five Flowers](https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2245651) on Pixabay.
-* The script to fade the hero slideshow on scrool is taken from [Nick Ciliak](https://codepen.io/nickcil/pen/sfutl) on Codepen; all other scripts that involve fading on scroll are derived from this code. At least that's my recollection. If not I apologize to rightful author.
+* The script to fade the hero slideshow on scrool is taken from [Nick Ciliak](https://codepen.io/nickcil/pen/sfutl) on Codepen; all other scripts that involve fading on scroll are derived from this code.
 * The ringing phone gif in the page overaly is taken from [B2B Maintenenace house](https://b2b.maintenancehouse.com/assets/b2b/images/icons/mobile-ring.gif);
 * [Stackoverflow](https://stackoverflow.com/) and [W3Schools](https://www.w3schools.com/) where widely used for general reference.
 
@@ -268,17 +278,19 @@ I unreservedly apologize if any code portion or picture is misattribuited or not
 
 ## Notes to the project's assessors:
 
-* I created a user with staff privileges:
+* On the deployed Heroku website, I created a user with staff privileges:
 * * username: testinauser
 * * password: #V342516
+
 You can login with this username and view the product management functionalities. You can use it also to reduce a product stock to a low number or to 0 and visulaize how it affects the products grid and cart functionalities.
+In the Media folder there is a "Xiaomi Redmi Note 8" folder which contains description, main and side picture of a product not yet loaded on the heroku website. The manufactorer "Xiaomi" needs to be created too. You can test the Product Management functionalities using these pictures and product description or any other data you want.
 * There is also another mock user, he is only a basic registered user:
 * * username: Cicciuser
 * * password: same as testinauser
 * The emails are sent via emailJS
 * * I am using two separate accounts with them, because you can have a maximum of two email teamplates on a free acoount, and I use three.
 * * Each account is the on the free tier basis, meaning they can fire a maximum 200 emails per month. I'm already under the 190 emails for this month. Something to keep in mind if you test the functionality heavily and notice the emails are not coming through anymore.
-* The Stripe modal may attempt to send a confirmation code to a mobile if it recognizes the email address. If you wait a few seconds it will let you entered the cutomer details and credit card manually. 
+* The Stripe modal may attempt to send a confirmation code to a mobile if it recognizes the email address. If you wait a few seconds it will let you enter the customer details and credit card manually. 
 * The Stripe keys are the Test ones, be sure to use credit card number 4242 4242 4242 4242, expiry date in the future.
 * Allauth was installed at the beginning of the project but then not used. I didn't uninstall it for fear of breaking something in the configurartion. 
 
